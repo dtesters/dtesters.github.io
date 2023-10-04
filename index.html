@@ -7,25 +7,26 @@
     <!-- Add any CSS styles or external stylesheets here -->
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Animated background gradient for the entire page */
-        body {
+        /* Set a background image for the body */
+       body {
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background: linear-gradient(90deg, #FF6B6B, #78FF6B); /* Gradient background */
-            animation: backgroundAnimation 10s linear infinite alternate;
+            background: url('https://cdn.discordapp.com/attachments/956584303658156074/1159223284190158888/pexels-stein-egil-liland-3374210.jpg?ex=65303dd0&is=651dc8d0&hm=54b50eae3927a0786002e2cda8676b6d867ed865ebfea76681caac1db60ca630&') no-repeat center center fixed;
+            background-size: cover; /* Ensure the image covers the entire background */
             transition: background-color 1s ease; /* Smooth background color transition */
+            animation: backgroundAnimation 10s infinite; /* Animate the background */
         }
 
-        @keyframes backgroundAnimation {
+           @keyframes backgroundAnimation {
             0% {
-                background: linear-gradient(90deg, #FF6B6B, #78FF6B); /* Gradient background */
+                background-position: 0 0;
             }
             100% {
-                background: linear-gradient(90deg, #78FF6B, #6B6BFF); /* Updated gradient background */
+                background-position: 100% 100%;
             }
         }
 
@@ -43,16 +44,15 @@
             z-index: 2; /* Ensure it appears above other content */
         }
 
-       /* Style for the menu button */
-.menu-button {
-    cursor: pointer;
-    color: #fff;
-    font-size: 24px;
-    position: absolute;
-    top: 10px; /* Adjust the distance from the top as needed */
-    right: 20px; /* Adjust the distance from the right as needed */
-}
-
+        /* Style for the menu button */
+        .menu-button {
+            cursor: pointer;
+            color: #fff;
+            font-size: 24px;
+            position: absolute;
+            top: 10px; /* Adjust the distance from the top as needed */
+            right: 20px; /* Adjust the distance from the right as needed */
+        }
 
         /* Style for the dark mode switch button */
         .dark-mode-switch {
@@ -88,9 +88,9 @@
             text-decoration: underline;
         }
 
-        /* Center the card */
+        /* Style for the card container */
         .card {
-            background-color: #3e4144; /* Updated card background color */
+            background-color: rgba(0, 0, 0, 0.7); /* Updated card background color with the same color as the menu background */
             color: #fff; /* Text color in the card */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -100,6 +100,20 @@
             border-radius: 20px; /* Add border radius to make corners circular */
             font-family: 'Pacifico', cursive; /* Use the 'Pacifico' font */
             margin-top: 80px; /* Adjust the margin to make space for the navigation bar */
+            position: relative; /* Add relative positioning */
+        }
+
+        /* Create a glass-like effect using a pseudo-element */
+        .card::before {
+            content: "";
+            background-color: rgba(0, 0, 0, 0.3); /* Dark glass background color with 30% opacity */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            z-index: -1; /* Place the pseudo-element behind the card content */
         }
 
         @keyframes cardAnimation {
