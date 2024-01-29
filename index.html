@@ -3,252 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MilitaryLotus's Website | Welcome to My World</title>
-    <meta name="description" content="Soon">
-    <meta name="keywords" content="dtester, dtesters, dtesterX , Discord , Discord testers , Discord tester , Discord test , MilitaryLotus30 , MilitaryLotus , YouTube , Website , Anime , Unknown , testers discord ,dtester, dtesters, dtesterX, Discord, Discord testers, Discord tester, Discord test, MilitaryLotus30, MilitaryLotus, YouTube, Website, Anime, Unknown, testers discord, dtester">
-   <!-- <img src="" alt="Custom and Unique AI generated Picture, This Image was created by a custom prompt, Copyright MilitaryLotus etc"> -->
-    <!-- Add any CSS styles or external stylesheets here -->
-    <link rel="stylesheet" href="styles.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-    <style>
-        /* Set a background image for the body */
-       body {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background: url('https://cdn.discordapp.com/attachments/956584303658156074/1159223284190158888/pexels-stein-egil-liland-3374210.jpg?ex=65303dd0&is=651dc8d0&hm=54b50eae3927a0786002e2cda8676b6d867ed865ebfea76681caac1db60ca630&') no-repeat center center fixed;
-            background-size: cover; /* Ensure the image covers the entire background */
-            transition: background-color 1s ease; /* Smooth background color transition */
-            animation: backgroundAnimation 10s infinite; /* Animate the background */
-        }
-
-           @keyframes backgroundAnimation {
-            0% {
-                background-position: 0 0;
-            }
-            100% {
-                background-position: 100% 100%;
-            }
-        }
-
-        /* Style for the dark glass-style navigation bar */
-        .nav-bar {
-            background-color: rgba(0, 0, 0, 0.7); /* Dark glass-style background color */
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            position: fixed;
-            top: 0;
-            right: 0; /* Adjusted to the top-right corner */
-            z-index: 2; /* Ensure it appears above other content */
-        }
-
-        /* Style for the menu button */
-        .menu-button {
-            cursor: pointer;
-            color: #fff;
-            font-size: 24px;
-            position: absolute;
-            top: 10px; /* Adjust the distance from the top as needed */
-            right: 20px; /* Adjust the distance from the right as needed */
-        }
-
-        /* Style for the dark mode switch button */
-        .dark-mode-switch {
-            cursor: pointer;
-            color: #fff;
-            font-size: 24px;
-            position: absolute;
-            top: 10px; /* Adjust the distance from the top as needed */
-            left: 20px; /* Adjust the distance from the left as needed */
-        }
-
-        /* Style for the menu (hidden by default) */
-        .menu {
-            display: none;
-            position: fixed;
-            top: 60px; /* Adjust the distance from the top as needed */
-            right: 20px; /* Adjust the distance from the right as needed */
-            background-color: rgba(0, 0, 0, 0.7); /* Dark glass-style background color */
-            padding: 10px;
-            border-radius: 5px;
-            z-index: 3; /* Ensure it appears above other content */
-        }
-
-        /* Style for menu items in the menu */
-        .menu-item {
-            color: #fff; /* Menu item text color */
-            text-decoration: none;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .menu-item:hover {
-            text-decoration: underline;
-        }
-
-        /* Style for the card container */
-        .card {
-            background-color: rgba(0, 0, 0, 0.7); /* Updated card background color with the same color as the menu background */
-            color: #fff; /* Text color in the card */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: center;
-            max-width: 400px; /* Adjust the maximum width as needed */
-            animation: cardAnimation 5s ease-in-out infinite alternate;
-            border-radius: 20px; /* Add border radius to make corners circular */
-            font-family: 'Pacifico', cursive; /* Use the 'Pacifico' font */
-            margin-top: 80px; /* Adjust the margin to make space for the navigation bar */
-            position: relative; /* Add relative positioning */
-        }
-
-        /* Create a glass-like effect using a pseudo-element */
-        .card::before {
-            content: "";
-            background-color: rgba(0, 0, 0, 0.3); /* Dark glass background color with 30% opacity */
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 20px;
-            z-index: -1; /* Place the pseudo-element behind the card content */
-        }
-
-        @keyframes cardAnimation {
-            0% {
-                transform: scale(1);
-            }
-            100% {
-                transform: scale(1.05);
-            }
-        }
-
-        /* Style for the Discord icon */
-        .discord-icon {
-            width: 100px; /* Adjust the size as needed */
-            height: 100px; /* Adjust the size as needed */
-            border-radius: 50%;
-            margin-bottom: 10px;
-        }
-
-        /* Page-wide styles */
-        h1, h2, p {
-            color: #fff; /* Text color in headings and paragraphs */
-            font-family: 'Pacifico', cursive; /* Use the 'Pacifico' font */
-        }
-
-        a {
-            color: #007BFF; /* Blue link color */
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* Button styles */
-        .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .button {
-            background-color: #007BFF;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            text-transform: uppercase;
-            transition: background-color 0.3s ease; /* Smooth button background color transition */
-        }
-
-        .button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Dark mode styles */
-        body.dark-mode {
-            background-color: #111;
-            color: #fff;
-        }
-
-        /* Include the 'Pacifico' font from Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-    </style>
+    <title>Hmmm</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Dark glass-style navigation bar -->
-    <div class="nav-bar">
-        <div class="menu-button" id="menuButton">&#9776;</div> <!-- Menu button with three lines -->
+    <div class="container">
+        <div class="boxes">
+            <div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div><div class="box"></div>
+        </div>
+        <div class="form">
+            <div class="border-form">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="profile-form">
+                <div class="left-content">
+
+                </div>
+                <div class="right-content">
+                    <div class="img">
+                        <img src="dtester-2.webp" alt="" draggable="false">
+                    </div>
+                    <div class="info">
+                        <p>MilitaryLotus</p>
+                        <p>@dtester</p>
+                        <img src="icons8-discord-new.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Hidden menu -->
-    <div class="menu" id="menu">
-        <a href="#" class="menu-item">Soon</a>
-        <a href="./about" class="menu-item">About</a>
-        <a href="" class="menu-item">Soon</a>
-        <a href="./contact" class="menu-item">Contact</a>
-    </div>
-
-    <div class="card">
-        <img src="https://cdn.discordapp.com/attachments/956584303658156074/1163910169424564335/dtester-2.png?" alt="Discord Icon" class="discord-icon">
-        <h1>MilitaryLotus</h1>
-           <p id="username">@dtester</p>
-        <p>I might update this site later</p>
-         <p>as its for test</p>
-        <a href="https://discord.com/users/591534252307513347">Discord profile</a> |
-        <a href="https://discord.gg/RBUwmddb7s
-">Discord Server</a>
-       <div class="button-container">
-    <button class="button" onclick="redirectToPage('/old-page')">old page</button>
-    <button class="button" onclick="redirectToPage('')">Soon!</button>
-</div>
-
-<script>
-    function redirectToPage(url) {
-        // Use JavaScript to redirect to the specified URL
-        window.location.href = url;
-    }
-</script>
-
-    </div>
-
-    <!-- Dark mode switch button -->
-    <div class="dark-mode-switch" id="darkModeSwitch">&#9728;</div>
-
-    <script>
-        // JavaScript to toggle the menu when the menu button is clicked or hovered
-        const menuButton = document.getElementById('menuButton');
-        const menu = document.getElementById('menu');
-
-        menuButton.addEventListener('click', toggleMenu);
     
-
-        function toggleMenu() {
-            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-        }
-
-        // JavaScript for dark mode toggle
-        const darkModeSwitch = document.getElementById('darkModeSwitch');
-        const body = document.body;
-
-        darkModeSwitch.addEventListener('click', toggleDarkMode);
-
-        function toggleDarkMode() {
-            body.classList.toggle('dark-mode');
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
