@@ -51,8 +51,8 @@ body{
     gap: 1px;
 }
 .box{
-    width: calc(5.30vw - 2px);
-    height: calc(5.30vw - 2px);
+    width: calc(5.25vw - 2px);
+    height: calc(5.25vw - 2px);
     background-color: #131414;
     transition: 1000ms;
 }
