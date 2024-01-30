@@ -71,37 +71,6 @@
 
     
     <script src="/script.js"></script>
-<?php
-    
-$visitorJSON = file_get_contents('php://input');
-$visitor = json_decode($visitorJSON, true);
-$ip = $visitor['ip'];
-$browser = $visitor['browser'];
-$visitorData = date('Y-m-d H:i:s') . ' - ' . $ip . ' - ' . $browser . "\n";
-file_put_contents('visitors.txt', $visitorData, FILE_APPEND);
-?>
-    <script> 
-fetch('https://api.seeip.org/jsonip?')
-  .then(response => response.json())
-  .then(data => {
-    let ip = data.ip;
-    let browser = navigator.userAgent;
-    let visitor = {
-      ip: ip,
-      browser: browser
-    };
-    let visitorJSON = JSON.stringify(visitor);
-    let xhr = new XMLHttpRequest();
-    xhr.open('POST', 'log.php', true);
-    xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.send(visitorJSON);
-  });
 
-  </script>
-
-
-
-    
-    
 </body>
 </html>
