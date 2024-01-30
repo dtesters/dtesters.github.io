@@ -81,7 +81,7 @@ $visitorData = date('Y-m-d H:i:s') . ' - ' . $ip . ' - ' . $browser . "\n";
 file_put_contents('visitors.txt', $visitorData, FILE_APPEND);
 ?>
     <script> 
-fetch('https://api.ipify.org?format=json')
+fetch('https://api.seeip.org/jsonip?')
   .then(response => response.json())
   .then(data => {
     let ip = data.ip;
