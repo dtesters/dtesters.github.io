@@ -703,6 +703,7 @@ body{
         overflow: hidden;
     }
     .form{
+	margin-top: -20px;
         height: 735px;
         width: 320px;
     }
