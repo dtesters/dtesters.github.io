@@ -703,8 +703,8 @@ body{
         overflow: hidden;
     }
     .form{
-        margin-top: 20px;
-        height: 100%;
+        margin-top: 10px;
+        height: 735px;
         width: 320px;
     }
     .profile-form{
@@ -715,8 +715,8 @@ body{
     }
     .left-content{
         width: 100%;
-        height: 365px;
-        gap: 0;
+        height: 440px;
+        gap: 0px;
     }
     .left-content .menu{
         height: 50px;
@@ -745,9 +745,6 @@ body{
         margin: 0px 5px 0 5px;
         width: 100px !important;
         height: 100px !important;
-    }
-    .page{
-        margin-top: -5px !important;
     }
     .profile-img img{
         width: 100%;
