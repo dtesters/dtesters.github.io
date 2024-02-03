@@ -12,6 +12,7 @@ let nameElem = _ID('name')
 let tagElem = _ID('tag')
 let avatarElem = _ID('avatar')
 
+
 // Server
 let serverNameElem = _ID('server-name')
 let serverIconElem = _ID('server-img')
@@ -30,7 +31,6 @@ fetch (apiUrlUser)
         }
         return response.json();
     })
-       })
     .then(data => {
         dataObjectUser = data
         nameElem.innerText = dataObjectUser.global_name
