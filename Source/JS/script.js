@@ -30,12 +30,15 @@ fetch (apiUrlUser)
         }
         return response.json();
     })
+       })
     .then(data => {
         dataObjectUser = data
         nameElem.innerText = dataObjectUser.global_name
-        let tagConvert = (dataObjectUser.tag)
-        tagElem.innerText = '#' + tagConvert.slice(0, tagConvert.length - 2)
+      
+        tagElem.innerText = '@' + dataObjectUser.username 
         avatarElem.setAttribute('src', '' + dataObjectUser.avatar.link + '')
+		 let tagConvert = (dataObjectUser.tag)
+       // tagElem.innerText = '#' + tagConvert.slice(0, tagConvert.length - 2)
     })
     .catch(error => {
         console.error('Error:', error);
