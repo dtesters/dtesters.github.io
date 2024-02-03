@@ -37,7 +37,7 @@ fetch (apiUrlUser)
       
         tagElem.innerText = '@' + dataObjectUser.username 
         avatarElem.setAttribute('src', '' + dataObjectUser.avatar.link + '')
-		 let tagConvert = (dataObjectUser.tag)
+		// let tagConvert = (dataObjectUser.tag)
        // tagElem.innerText = '#' + tagConvert.slice(0, tagConvert.length - 2)
     })
     .catch(error => {
