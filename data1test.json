@@ -1,0 +1,914 @@
+[
+    {
+        "content": "2024-07-04T01:02:18.855000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-07-03T01:02:20.060000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-06-19T22:36:43.393000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-06-18T22:36:44.609000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-06-16T18:56:50.268000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-06-15T18:56:49.868000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-06-15T23:31:51.282000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-06-14T23:31:52.573000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-06-13T20:45:40.606000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-06-12T20:45:40.100000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "## <:shapes:1184226211199733892> More Apps in More Places <:shapes:1184226211199733892>\n\nHey Admins and Mods! Starting June 18, you might notice members of your server bringing new fun, games, and functionality to your space with apps.\n\nWe launched a new feature that allows anyone to add apps to their own account, and use them across all of their servers, DMs, and GDMs.\n\nCheck out our [Help Center article](<https://support.discord.com/hc/articles/23957313048343>) to learn about how you can effectively moderate apps in your server, including:\n\n- What these apps can (and can’t) do\n- How to set up our new “**Use External Apps”** permission, available now\n- How we leveled up AutoMod to keep your server safe\n\nWanna spend some time tinkering? Follow our [guide to building your own app](<https://discord.com/developers/docs/tutorials/developing-a-user-installable-app>)!\n\nStay awesome,\nThe Discord Team",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0000",
+            "id": 1109074661431586878
+        },
+        "timestamp": "2024-06-12T05:00:58.732000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-06-12T21:07:28.816000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-06-11T21:07:28.159000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-06-12T08:11:14.136000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-06-11T08:11:14.987000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-06-10T19:44:36.999000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-06-09T19:44:36.467000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-06-10T19:20:35.511000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-06-09T19:20:36.509000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-06-09T17:12:46.204000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-06-08T17:12:47.173000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-06-04T16:23:54.855000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-06-03T16:23:55.995000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-06-04T09:48:56.622000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-06-03T09:48:57.568000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-06-03T23:46:13.510000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-06-02T23:46:14.454000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-06-03T14:07:54.913000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-06-02T14:07:55.749000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-06-02T14:07:45.253000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-06-02T16:07:36.049000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-06-02T14:07:36.831000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-06-03T14:07:08.546000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-06-02T14:07:09.401000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-06-02T22:09:36.843000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-06-01T22:09:37.796000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-06-01T21:06:34.553000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-31T21:06:34.900000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-06-01T15:33:21.800000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-31T15:33:21.413000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-05-31T19:50:39.807000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-30T19:50:40.070000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-05-31T15:10:30.838000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-30T15:10:31.048000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-05-30T20:32:35.423000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-29T20:32:35.195000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-05-30T20:31:21.893000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-29T20:31:21.646000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-05-30T04:51:17.484000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-29T04:51:18.439000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-05-27T22:19:02.931000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-26T22:19:03.874000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-05-25T22:16:57.326000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-24T22:16:57.650000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-05-25T18:30:24.308000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-24T18:30:24.662000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-05-24T23:55:58.655000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-23T23:55:59.010000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-05-22T21:50:38.920000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-21T21:50:39.684000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-05-22T18:47:43.455000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-21T18:47:44.243000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-05-21T22:41:48.621000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-20T22:41:49.377000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-05-18T11:10:57.276000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-17T11:10:58.461000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-05-17T18:21:29.343000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-16T18:21:30.966000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-05-16T16:06:36.666000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-15T16:06:36.420000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "##\n👀  What's that tag?\n\nHey Admins and Mods! Starting May 15, it's possible you might notice something new next to some of your members' usernames: ✨ **Guild Tags **✨\n\nSee a cute little tag next to a member's username or profile? That's a **Guild Tag**, which indicates someone's membership to a chosen Guild. You can click on this tag to see the Guild profile, and even apply for membership there as well. What this means for you, beloved Admins and Mods, is that if your server's AutoMod is on, it will also check for Guild Tags ☑️ \n\n**What's a Guild?** It's a small, exclusive server that members can apply to join. These servers are tight-knit communities where members can relish in shared identities, hobbies, play styles, and more! \n> Please note that Guilds are only available to a small number of servers at this time, so not every server has access to this experiment. Additionally, our support team cannot manually add servers to this experiment.\n\nMuch love,\nThe Discord Team",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0000",
+            "id": 1109074661431586878
+        },
+        "timestamp": "2024-05-14T06:43:42.666000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-05-14T09:02:03.163000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-13T09:02:04.938000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-05-12T20:20:12.239000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-11T20:20:13.887000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-05-12T20:18:31.242000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-11T20:18:32.872000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-05-12T11:27:02.957000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-11T11:27:04.558000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-05-08T22:21:51.178000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-07T22:21:52.027000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-05-05T10:40:16.214000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-05-04T10:40:17.063000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-04-25T19:40:39.737000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-04-24T19:40:40.934000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-04-13T00:46:55.985000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-04-12T00:46:56.736000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "You’re receiving this message because you manage a server(s) that monetizes on Discord.\n\nWe have made updates to our [Monetization Policy](https://support.discord.com/hc/en-us/articles/10575066024983-Monetization-Policy) that will be effective starting May 5, 2024. We have streamlined our policies and made updates to better align with our payment providers’ policies. This includes prohibiting monetization of gambling-adjacent activities such as gambling discussions, gambling advice, or community management of gambling operations.\n\nIf you decide to fully remove the ability to earn money through Server Monetization from your server, first make sure the following are true:\n- **All existing tiers are deleted** (Delete all draft and/or archived tiers as well). Your subscription(s) will roll off and cancel at the end of their cycles if your tiers are deleted.\n- **There are zero pending payouts.** If you’re waiting for a payout from Discord, you will need to wait until the final payout clears in the next cycle before Server Monetization can be fully removed from your server.\n\nOnce the above statements are true, you can follow [these steps to fully remove Server Subscriptions from your server](https://creator-support.discord.com/hc/en-us/articles/10423011974551-Server-Shop-For-Server-Owners-and-Admins#h_01HHG1XZR121GMPN8CGF9T5MQR). \n\nThanks for helping us make Discord the best place for people to hang out and talk together!",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0001",
+            "id": 669627189624307712
+        },
+        "timestamp": "2024-04-05T21:06:33.759000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-04-03T07:06:28.496000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-04-02T07:06:29.977000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-04-03T05:19:11.581000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-04-02T05:19:11.126000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-04-02T23:39:55.327000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-04-01T23:39:54.825000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-04-01T03:09:47.200000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-03-31T03:09:49.016000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-03-31T16:36:42.156000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-03-30T16:36:42.655000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-03-30T22:23:52.105000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-03-29T22:23:51.812000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-03-30T15:57:32.273000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-03-29T15:57:31.972000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-03-25T16:04:11.208000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-03-24T16:04:11.088000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-03-24T00:21:35.430000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-03-23T00:21:35.752000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-03-21T01:10:07.899000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-03-20T01:10:07.390000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-03-09T23:17:24.738000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-03-08T23:17:26.073000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-03-09T01:53:49.750000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-03-08T01:53:51.312000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-03-08T22:10:19.851000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-03-07T22:10:21.309000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-01-18T16:19:49.300000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-01-17T16:19:49.675000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-01-15T12:17:36.708000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-01-14T12:17:36.467000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-01-14T19:38:26.626000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-01-13T19:38:27.921000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2024-01-14T00:01:58.395000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2024-01-13T00:01:57.726000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2023-12-03T23:03:02.556000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2023-12-02T23:03:03.803000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2023-11-01T19:48:22.049000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2023-11-01T19:47:45.483000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2023-11-01T21:47:27.064000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2023-11-01T19:47:29.528000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "2023-09-24T23:50:45.696000+00:00",
+        "author": {
+            "name": "dtester",
+            "discriminator": "0",
+            "id": 591534252307513347
+        },
+        "timestamp": "2023-09-23T23:50:47.034000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "# Discord Communities are Getting a Safety Buff 🦺\n\nToday, we're rolling out **three** new features that will help you keep your communities safe from DM spam and raids: **Activity Alerts, Security Actions, and a revamped Members page**.\n\n## Activity Alerts and Security Actions\n**Activity Alerts** will notify you of abnormal server behavior, particularly massive raids or unusual DM activity. From there, your team can investigate further and take further action to protect your community as necessary. If it doesn’t seem like an issue, you can easily mark it as safe. \n\n**Security Actions** allow swift server lockdowns by surfacing useful tools quicker, helping halt new member joins or aiding in closing off DMs between non-friend community members. Current Security Actions include:\n- **Pause Invites**: Stop new members from using any invites to join the server. Experienced moderators may know this one already, and now it’s more easily accessible.\n- **Pause DMs**: Temporarily stops new DMs from being sent between members in the server. This excludes friends DMing each other, when moderators DM server members, or DMs from Apps.\n\n## Members Page\nPreviously tucked away in Server Settings, the **Members page** is used to find specific members, display members with a specific role, and even help you prune inactive members. \n\nNow, the Members page is in a more easily-accessible spot above your server’s channel list. And it’s been reimagined, letting you view your members in a more organized manner.  It now displays relevant safety information about your members:\n- **Join Date**:  See when they joined your server.\n- **Invite Link**: See which invite link they used to join your server.\n- **Account Age**: See if they’ve been on Discord for a while or are a new user.\n- **Signals**: Appears if someone may have been engaging in unusual DM Activity, or flags a member you’ve timed out. Use this to easily filter and find members who might require additional action or review. Over time, we plan on surfacing additional relevant Signals.\n\nAll of these new features work in tandem to provide mods with the helpful information and actions needed to help squash DM spam and thwart raids. We’re committed to improving safety on Discord by empowering and equipping mods with more tools to help protect your servers from harmful disruptions. It’s a never-ending journey, so stay tuned—the best is yet to come!\n\nFor the details on how to use these new tools, check out the following articles in our help center:\n\n[Members page Help Center Article](<https://support.discord.com/hc/en-us/articles/15946797617431>)\n\n[Activity Alerts + Security Actions Help Center Article](<https://support.discord.com/hc/en-us/articles/17439993574167>)",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0000",
+            "id": 1109074661431586878
+        },
+        "timestamp": "2023-09-19T03:20:51.960000+00:00",
+        "attachments": [
+            "https://cdn.discordapp.com/attachments/667560445975986190/1152346782492278845/Disc_MKT_Community_Safety_Members_GIF_03_V4.mp4?ex=668ef512&is=668da392&hm=81990e608b9873572afe370ffba5a56600b9524507451e21b65e32f6f747832d&"
+        ]
+    },
+    {
+        "content": "## Server Guide is coming to all communities\n\n**Server Guide** is a dedicated space within your community that points members to essential parts of your space and encourages them to participate. Many admins who have already set theirs up are __seeing big bumps in member engagement.__ <:nitroup:1099063419535097918> \n\n__Here are some of the features in the Server Guide that might boost your member activity.__\n➡️ **Welcome Sign**: A custom message from you to new members, placed at the top.\n\n<:star:1099063455417389117> **New Member To Do's** 3-5 next steps for new members that get them talking and participating in your community.\n\n<:star:1099063455417389117> **Resources**: Declutter your server by turning read-only channels into fancy, easy-to-digest pages with images you upload **__(so make sure to upload an image) __**Another perk: Members land at the top of these Resource pages instead of the bottom of a message thread, and message bars and avatars are removed so it looks cleaner. Otherwise, your content, embeds, media, and formatting stay the same.\n\n## That’s not all. 2 more updates to make moderation better!\n\n🤖 **Automod for Profiles**\nSometimes bad actors set their display names in a way that breaks the rules. Automod will allow you to block specific language in a member's profile, preventing them from interacting with others in your community until they update their profile.\n\n🚫  **Remove Reactions by Emoji**\nInstead of removing all reactions from a post or individually deleting them, you can select the emojis you want to remove.",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0000",
+            "id": 1109074661431586878
+        },
+        "timestamp": "2023-07-13T09:54:05.086000+00:00",
+        "attachments": [
+            "https://cdn.discordapp.com/attachments/667560445975986190/1128458014068842656/New_user_2.png?ex=668f0fec&is=668dbe6c&hm=efa5cf1ee75fc078681eb77a6fbc613fdc4218e5c4db5ccffd5892f465366921&"
+        ]
+    },
+    {
+        "content": "Hey Admins and Mods,\n\nYou all make this Discord world go round, and we’re always looking for ways to continue to show our appreciation and give you the support you deserve.\n\nTo help you and your community thrive, we recently invested in a Wump-ton of new and updated resources. __You now have more ways than ever to connect with other admins, learn best practices directly from Discord, and stay on top of essential news.__\n\n### Introducing the Admin Newsletter! 📰 \n* Sign up and this link <https://discord.com/admin-newsletter> for regular emails packed with inspiration and tools to help you run a server in style.\n\n### Brush up on your skills with the revamped Community Portal 📔 \n* Dive into articles for beginners and pros alike, spotlights on stellar servers, and courses to guide you to new heights. <https://discord.com/community>! \n\n### Eager to meet admins just like you? ✏️ \n* The Discord Admin server has opened its doors to welcome more Community leaders. Find out if you’re eligible and how to join here <https://support.discord.com/hc/en-us/articles/5309276245271-Discord-Admin-Community-FAQ>\n\nGet exploring, and hopefully, we’ll see you in one of these new and improved spaces!",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0000",
+            "id": 1109074661431586878
+        },
+        "timestamp": "2023-07-11T10:06:13.688000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "Hey Mods and Admins,\n\n**We're here with an update to make it more clear how we categorize the different types of servers, how to recognize them, and what you can expect in those spaces.**\n\n💠 **Friend Server**\n__*Friend Servers are invite-only spaces designed to discuss, connect, and share with your friends or smaller groups.*__ Invite links in Friend servers will expire at a maximum of 30 days, though previously created non-expiring links will remain active and functional.\n\n*Friend Servers who wish to have access to Community features <https://support.discord.com/hc/en-us/articles/360047132851-Enabling-Your-Community-Server> may opt-in to become a Community Server at any time in server settings.*\n\n💠**Community Server**\n__Community Servers are spaces designed for people to share, connect, and learn from others all over the world who share common interests.__ Moderators in Community Servers have access to tools like Server Insights, Raid Protection, Rules, and Onboarding.\n\n*Becoming a Community Server does not mean that anyone can find or join your server. Prospective members have to be sent an invite link.*\n\n💠**Updating Server Badging** \nIn order for users to know what type of server they’re in, we’ve introduced badges for Community Servers.\n\nWe will display a distinct server badge if the server is a \n* Community Server\n* Discoverable Community\n* Partnered Server\n* Verified Server\n\nHovering over the badge will provide more detailed information about the server type, whether anyone can join the server, and the Boost level. Communities that previously had the “Public” tag will now have a “Discoverable Community” badge (denoted by a globe).\n\nFor more information on our approach to safety across server types, please visit our Safety Center. <https://discord.com/safety/360043709612-our-policies>",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0000",
+            "id": 1109074661431586878
+        },
+        "timestamp": "2023-07-08T16:37:52.823000+00:00",
+        "attachments": [
+            "https://cdn.discordapp.com/attachments/667560445975986190/1116412148642500720/HC-Grid-EN.png?ex=668f6796&is=668e1616&hm=b03ed12bfdffd106a15ce48dcdf20047657ea28232e0e736d5d9c98b482b6b8c&",
+            "https://cdn.discordapp.com/attachments/667560445975986190/1116412148978024530/HC-Example-EN.png?ex=668f6796&is=668e1616&hm=013d7ad81a454183d5aad3f5c1ffb3056abab3fe8afc7389ab4a68f37465872a&"
+        ]
+    },
+    {
+        "content": "Hey Mods and Admins,\n\n**We're here with an update to make it more clear how we categorize the different types of servers, how to recognize them, and what you can expect in those spaces.**\n\n💠 **Friend Server**\n__*Friend Servers are invite-only spaces designed to discuss, connect, and share with your friends or smaller groups.*__ Invite links in Friend servers will expire at a maximum of 30 days, though previously created non-expiring links will remain active and functional.\n\n*Friend Servers who wish to have access to Community features <https://support.discord.com/hc/en-us/articles/360047132851-Enabling-Your-Community-Server> may opt-in to become a Community Server at any time in server settings.*\n\n💠**Community Server**\n__Community Servers are spaces designed for people to share, connect, and learn from others all over the world who share common interests.__ Moderators in Community Servers have access to tools like Server Insights, Raid Protection, Rules, and Onboarding.\n\n*Becoming a Community Server does not mean that anyone can find or join your server. Prospective members have to be sent an invite link.*\n\n💠**Updating Server Badging** \nIn order for users to know what type of server they’re in, we’ve introduced badges for Community Servers.\n\nWe will display a distinct server badge if the server is a \n* Community Server\n* Discoverable Community\n* Partnered Server\n* Verified Server\n\nHovering over the badge will provide more detailed information about the server type, whether anyone can join the server, and the Boost level. Communities that previously had the “Public” tag will now have a “Discoverable Community” badge (denoted by a globe).\n\nFor more information on our approach to safety across server types, please visit our Safety Center. <https://discord.com/safety/360043709612-our-policies>",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0000",
+            "id": 1109074661431586878
+        },
+        "timestamp": "2023-07-08T16:37:52.817000+00:00",
+        "attachments": [
+            "https://cdn.discordapp.com/attachments/667560445975986190/1116412148642500720/HC-Grid-EN.png?ex=668f6796&is=668e1616&hm=b03ed12bfdffd106a15ce48dcdf20047657ea28232e0e736d5d9c98b482b6b8c&",
+            "https://cdn.discordapp.com/attachments/667560445975986190/1116412148978024530/HC-Example-EN.png?ex=668f6796&is=668e1616&hm=013d7ad81a454183d5aad3f5c1ffb3056abab3fe8afc7389ab4a68f37465872a&"
+        ]
+    },
+    {
+        "content": "**Media Channels** are new channel type that allows you to more easily share exclusive content right where your community hangs out: here on Discord! We 💙 media channels because:\n\n🧩 They **fit your business**, wherever it’s at. Haven’t launched yet? Create a media channel, add a tier, and you’re ready to go. Already earning? You can add a media channel to one of your existing tiers or create a brand new one.\n\n👨‍👩‍👧‍👧 They **engage your subscribers** by presenting content in an accessible, scrollable format, creating more opportunities for conversation and feedback.\n\n💰 They help you **get more subscribers.** Links to media channel posts that are shared in free channels display the content behind a subscriber-only lock screen, increasing awareness of your exclusive content.\n\nTo create a Media Channel, just create a channel like usual and select Media.\n\nLearn more about all the ways we’ve super-powered Server Subscriptions this year: https://discord.com/blog/server-subscriptions-updates-media-channels-tier-templates-and-more",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0001",
+            "id": 669627189624307712
+        },
+        "timestamp": "2023-06-28T21:17:21.610000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "**Media Channels** are new channel type that allows you to more easily share exclusive content right where your community hangs out: here on Discord! We 💙 media channels because:\n\n🧩 They **fit your business**, wherever it’s at. Haven’t launched yet? Create a media channel, add a tier, and you’re ready to go. Already earning? You can add a media channel to one of your existing tiers or create a brand new one.\n\n👨‍👩‍👧‍👧 They **engage your subscribers** by presenting content in an accessible, scrollable format, creating more opportunities for conversation and feedback.\n\n💰 They help you **get more subscribers.** Links to media channel posts that are shared in free channels display the content behind a subscriber-only lock screen, increasing awareness of your exclusive content.\n\nTo create a Media Channel, just create a channel like usual and select Media.\n\nLearn more about all the ways we’ve super-powered Server Subscriptions this year: https://discord.com/blog/server-subscriptions-updates-media-channels-tier-templates-and-more",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0001",
+            "id": 669627189624307712
+        },
+        "timestamp": "2023-06-28T21:17:16.626000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "Hey Admins and Mods,\n\nBeginning on March 31, over the next several weeks we will start to roll out a new feature called **Soundboard**. This feature will let users upload custom short sounds to their servers, and then use those sounds to communicate in Voice Channels. \n\nClick here to learn more about soundboard: <https://support.discord.com/hc/en-us/articles/12612888127767-Soundboard-FAQ#h_01GTYZSTZQV1GXSRVX1A420WPX>\n\nTo help you keep your server safe, we have already released some new permissions around Soundboard. You can now access and configure these permissions directly from Server Settings:\n- **Use Soundboard:** Determines who in your server is able to use soundboard.\n- **Manage Expressions:** Determines who in your server is able to upload and manage sounds.\n\nVisit the help center article linked above to read more about Soundboard permissions!\n\nPeace and Love,\nDiscord Team",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0000",
+            "id": 1104024093768024115
+        },
+        "timestamp": "2023-05-09T21:49:17.117000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "Hey Admins and Mods! \n\nReach for the stars with new revenue tools for creators and communities on Discord.\n\n<:sparkleblurple:1048340045192495124> Server Subscriptions available in the US! <:sparkleblurple:1048340045192495124>\n<:dot:890738617130037318> Customize tiers, offer exclusive paid content, and meet future subscribers with Promo Pages—all while providing as much of a free experience to your community as you want. (https://dis.gd/CUServerSubs) \n<:dot:890738617130037318> Server Subscriptions are only available in the US. Join our waitlist to be notified if they're available in your area. (https://dis.gd/ServerSubsWaitlist)\n\n<:sparklegreen:1048339715507638282> Private Threads are now available to all! <:sparklegreen:1048339715507638282> \n<:dot:890738617130037318> Your community no longer needs to have Server Boosting to Level 2 to use Private Threads.\n\n<:sparkleyellow:1048339851088502964> Improvements to Server Insights! <:sparkleyellow:1048339851088502964>\n<:dot:890738617130037318> Dates should be more accurate.\n<:dot:890738617130037318> Conversations in Forum Channels will contribute to Engagement metrics, and now you can see joins via Student Hubs, Integrations, and Bots.\n<:dot:890738617130037318> The requirement to be a Communicator has been increased from 1 to 3 messages sent per week. This only applies to the Engagement tab and doesn’t impact Partner requirements.\n\n<:sparklefuschia:1048339927403864074> Forum Channels now with Gallery View! <:sparklefuschia:1048339927403864074> \n<:dot:890738617130037318> Gallery View gives posts in image-heavy Forum Channels like #fanart and #pet-pics room to shine - easily toggle between List View and Gallery View at any time.\n<:dot:890738617130037318> With this update, Forum Channels are now officially available on all Community servers!\n\n<:sparklered:1048339634909892618> AutoMod keeps getting better! <:sparklered:1048339634909892618> \n<:dot:890738617130037318> Alongside more Custom Rules, we’ve added Allowlists to your custom rules! Messages containing anything you’ve added to your Allowlist will not be flagged by AutoMod.\n<:dot:890738617130037318> We’ve also added the ability to filter messages using RegEX in your custom rules. (<https://dis.gd/RegEXHC>)\n\nEnjoy your new tools, everyone!",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0000",
+            "id": 1037153174869512202
+        },
+        "timestamp": "2022-12-23T12:24:36.387000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "Hey Admins and Mods!\n\nIn our mission to help you keep your communities safe and lift some of that moderation work off your shoulders, we’ve set our sights on helping you more easily detect and prevent spam and raids. Today's spotlight introduces new features that help keep your communities cleaner from spam, and a preview into our early plans on building tools to deal with raids.\n\n<:automod:978473808623194143> **Keep your Community clean from spam with new AutoMod spam filters**\nWe know dealing with spammy messages sucks. If *only* there was a way spammy messages could be blocked from being posted in your channels and threads in the first place… \n\nThankfully, every community’s best friend in moderation - **AutoMod** - just got buffed with some new spam-cleansing abilities. Enable AutoMod in **Server Settings > AutoMod** to save hours of moderation work with these new filters:\n<:dot:890738617130037318>**Block Mention Spam** - Detect and block mention spam and mention raids before they happen to keep chat clean and prevent members in your community from receiving annoying mention notifications and ghost pings. Set your own limit on the number of mentions a message may contain (up to 50). \n<:dot:890738617130037318> **Block Spam Content** - Detect and block messages containing text content that has been widely flagged as spam by user reports. Great for blocking unwanted spam like those pesky free Nitro scams, unsolicited advertisements, and invite spam that disrupt your Community's friendly conversations and game nights.\nCheck out our updated AutoMod FAQ help article: https://support.discord.com/hc/en-us/articles/4421269296535-AutoMod-FAQ\n\n**Our early plans and progress to protect communities from raids**\nWe know being raided is one of the worst experiences you and your Community can go through which is why we’re giving you a heads up that we’re exploring ways to better detect and prevent raids before they take place, while making it easier to de-escalate a raid when they do happen.\n\nWhile we’re in the earlier stages of progress here at Discord Labs™, rest assured we’re eager to equip you with effective tools to more easily deal with raids as quickly as we can. So what can you do now?\n<:dot:890738617130037318> **Report Raids**: You can now directly send us feedback reports when a raid is taking place in your server by going to your Server Dropdown and selecting Report Raid. If your Community is being raided, we encourage you to partner with us in our moderation efforts by reporting the situation as we’ll be regularly reviewing your raid reports to develop tooling that combat raids. \n<:dot:890738617130037318> **Pause invitations** to your Community at anytime - You can now pause your invite links for when you want to temporarily prevent people from joining your server without having to revoking your invite links or vanity URLs - just head over to **Server Settings > Invites**. \nBecause this cuts off the flow of new arrivals, you'll have an easier time halting a raid in progress. It also lets well-intentioned community members trying to join know that the stoppage is temporary, and that soon, they’ll be able to come back to the same link and try again.\nLearn more about pausing invites: https://support.discord.com/hc/en-us/articles/8458903738647\n\n**How we’re protecting communities from suspicious links: **\nTo help y’all with the legwork in dealing with messages containing malicious links, we’ve buffed every Community server with a proactive suspicious link filter designed to detect and block messages containing links that are verified to be harmful, such as those leading to malware or phishing sites that try to steal people’s personal or financial information. We’ll be continuously working on identifying links that might mislead or redirect users by reviewing a regularly updated list of unsafe and phishing websites: https://support.discord.com/hc/en-us/articles/7326747355159-Why-was-my-message-not-delivered-",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0000",
+            "id": 867538663137869845
+        },
+        "timestamp": "2022-09-11T21:20:09.826000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "Hey Admins and Moderators,\n\nWe've got an update on all things Community today!\n\nIf you haven't joined our Discord Admin Community… what are you waiting for? Head over to **Server Setting > Community overview** and join us — we've got a slew of exciting and fun stuff planned that you won’t want to miss out on.\n\n🪴 __*Below is a sneak peek at the Stage events we’ve got cookin’!*__\n\n<:dot:958824443445116960> August 16th: Safety on Discord\n<:dot:958824443445116960> August 25th: Utilizing Automod in your Community\n\nTo join our Discord Admin Community, your server will need to hit a few engagement requirements. Once your community reaches the requirements listed <https://dis.gd/DAC-FAQ>, any of your Admins or Moderators with the “Manage Server” permission will be able to join the Discord Admin Community via Server Settings > Community.\n\n📚 __**Community Resources**__\nWe recently released our Community Resources, a one-stop shop for learning how to build, engage, grow, and manage a space where anyone can belong. New articles, showcases, and more will be added in the future, so be sure to bookmark it for later. <https://dis.gd/Community_Resources>\n\nIf you haven't already taken a peek at some of our content, you can check out the latest video! https://dis.gd/H2M_Your_Discord_Community\n\n🤖 **__Apps & Bots__**\nIf your server uses a **verified app**, the way you send commands has probably changed in the last year - if it hasn’t, it may very soon! Developers of verified apps have been migrating to Slash Commands. The deadline to finish migrating is the end of August, which means on Sept 1, any apps that haven’t finished may have reduced functionality.\n\nIf you haven’t tried out slash commands yet, type / in your server to see all the commands you have access to. If your favorite app isn’t listed, they may not yet have enabled slash commands. Or, you might need to check out the new permissions system in **Server Settings > Integrations.**\n\nIf you run across any issues, you can reach out to individual app developers to find out more. Learn more here: <https://discord.com/blog/welcome-to-the-new-era-of-discord-apps>",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0000",
+            "id": 867538663137869845
+        },
+        "timestamp": "2022-08-14T00:02:24.100000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "Hello Admins & Mods!\n\nIt’s official. 2022 is the year of communities. That’s why we’ve been investing in ways to make it easier to start, grow, and protect your communities on Discord. \n\nToday, we’re unveiling new tools and resources fresh from our labs so let’s dive in.\n\n**It’s Easy To Keep Your Community And Conversations Clean With AutoMod**\n\nMeet AutoMod, your new best friend in moderation. Designed to reduce work and stress for moderators, AutoMod comes equipped with keyword filters to help keep your server clean and safe around the clock by automatically filtering out harmful or undesirable messages before they’re posted. Enjoy newfound peace of mind, even when you’re offline.\n\nEnable AutoMod in **Server Settings > AutoMod**. Once the wheels are turning…\n\n:dot: Choose from readily available keyword filters or customize your own with lists of words or phrases and the actions AutoMod will take when they’re found in your server.\n:dot: AutoMod’s keyword filters can automatically detect, block, and alert you of messages containing harmful words or phrases—before they’re ever posted.\n:dot: Receive alerts from AutoMod when members try to use words from your lists and assign actions like Timeout from the alert itself.\n:dot: Add **Wildcards** to your keywords to detect variations of words that partially match those on your lists. \n     <:bluedot:915338133070032997> `bake*` ⇒ Today, we **bake**d some coffee cake\n     <:bluedot:915338133070032997> `*milk` ⇒ I add soy**milk** to my coffee\n     <:bluedot:915338133070032997> `*press*` ⇒ A Gibraltar is equal parts es**press**o and milk\n:dot: It just works™️ on any message sent (i.e., in #text-channels, Threads, Text chat in Voice channels). Check out our Help Center article for all your burning questions. <https://dis.gd/cu-automod-hc>\n\nYour friendly AutoMod is raring to go on Windows, macOS, Linux, iOS, Android, and the web app. Don’t delay—employ your AutoMod today! https://dis.gd/cu-automod-blog\n\n**New Tools To Build Thriving Communities On Discord**\n\nAt Discord, we believe anyone can build a thriving community. We’re excited to share new products and support to help you do so—coming sooner than you think.\n\n:dot: Explore a new preview of **Premium Memberships**, bringing customizability to communities and creators platform-wide! <https://dis.gd/cu-community-update>\n:dot: Meet **Community Resources**, your one-stop shop for learning how to build your server into a community! Learn to build, engage, grow, and manage a space where anyone can belong. <https://dis.gd/cu-community>\n:dot: Chat with your peers in our brand new **Discord Admin Community**, a space where admins, creators, and community managers can connect. <https://dis.gd/cu-meet-admins>\n\nIncredible communities on Discord are built by incredible admins and moderators like you. We can’t wait to do more together.",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0000",
+            "id": 867538663137869845
+        },
+        "timestamp": "2022-06-27T12:14:08.969000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "**Text Chat in Voice Channels will be enabled automatically for all servers on Wednesday, June 29th** and we’ve made it easier for you to moderate the surface with Discord’s AutoMod! Here’s how to make the best of this brand-new feature.\n\n<:dot:890738617130037318> Customize your server’s Channel and Role permissions and opt-in to *Text Chat in Voice Channels* ahead of time.\n<:dot:890738617130037318> Many of your favorite moderation bots support monitoring *Text Chat in Voice Channels* and Discord’s new AutoMod can automatically detect and flag undesirable messages and rule-breakers before they are posted; helping you keep conversations clean and giving you time to focus on the fun parts of managing your community: (AutoMod Help Center article here: https://support.discord.com/hc/en-us/articles/4421269296535-AutoMod-FAQ).\n<:dot:890738617130037318> Debut your new *Text Chat In Voice Channels* in your next D&D session or movie night.\n<:dot:890738617130037318> Sit back and enjoy a less chaotic <#687068339989905449> with zero context, now that members can send messages within voice channels.\n\nFor more details on *Text Chat in Voice Channels* read our Help Center article here: https://support.discord.com/hc/en-us/articles/4412085582359\n\nWe can’t wait to see how you make the most of *Text Chat In Voice Channels*.",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0000",
+            "id": 867538663137869845
+        },
+        "timestamp": "2022-06-22T07:49:30.434000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "Hey Admins & Mods,\n\nBeginning Wednesday, 6/1 we’re rolling out **Text Chat in Voice Channels** to Discord. With embedded chat in voice channels, your community can send messages, GIFs, links, memes, etc. to everyone in the voice channel—no more clogging <#687068339989905449>.\n\n**We are rolling out Text Chat in Voice Channels slowly to all servers throughout the week. Initially, it will not be enabled by default for servers that have greater than 200 members or are set as a Community Server.**\n\nBut once you have access…\n<:dot:843249351291043851> You’ll have a new Server Settings tab on the web or your client called *Text in Voice*.\n<:dot:843249351291043851> Turn Text Chat in Voice Channels on for your community by selecting *Enable*.\n<:dot:843249351291043851> Customize permissions for your community, like enabling in specific voice channels or disabling for certain roles. Most developers of your favorite moderation bots have already updated their instances to monitor Text Chat in Voice Channels!\n\nFor more details on *Text Chat in Voice Channels*, read our Help Center article here: https://support.discord.com/hc/en-us/articles/4412085582359\n\nIn four weeks, Text Chat in Voice Channels will be automatically enabled for all servers while still respecting your prescribed permissions—but we recommend you enable it early for all your server members to enjoy!",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0000",
+            "id": 867538663137869845
+        },
+        "timestamp": "2022-06-08T03:33:26.070000+00:00",
+        "attachments": [
+            "https://cdn.discordapp.com/attachments/667560445975986190/981463279232766012/img.gif?ex=668f8d68&is=668e3be8&hm=bef8dc7ab62e6dc12815c4027e702f7db0a28192d33d003ba0f6992b0adaf1c4&"
+        ]
+    },
+    {
+        "content": "Hello Admin & Mods!\n\nToday, we have a new update for slash commands in your servers: **Permissions!** If you don’t know, slash commands are a new, easier way to use bots on Discord. You might already have some to use—type `/` to find out!\n\nWith this new system, you can:\n<:dot:843249351291043851>Control who can use slash commands in your servers\n<:dot:843249351291043851>Control in which channels commands can be used\n<:dot:843249351291043851>Sync or unsync commands like channels and categories, making mass management and special cases easy to handle\n\nYou can find these permissions in **Server Settings → Integrations → Pick an app!** If the app supports slash commands, you’ll see the UI.\n\n⚠️ If a bot you use has integrated slash commands, the old way of denying the bot Read Messages **will not work to moderate commands usage.** You’ll need to use this new system to control access.\n\nNot sure if your bots support slash commands? Check out in **Server Settings → Integrations**, or just **type `/`!**\n\nCheck out our blog post to learn more and see a detailed walkthrough: https://discord.com/blog/slash-commands-permissions-discord-apps-bots",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0000",
+            "id": 867538663137869845
+        },
+        "timestamp": "2022-04-29T21:44:49.227000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "Hey Community Admins and Moderators, \n\n🕐  **Timeout feature is now live to all communities**\n\nWe're excited to share a better way for moderators to temporarily stop a member from interacting in their server! Members in timeout will not be able to reply, react, message or join voice for a set period of time. \n\n<:dot:843249351291043851> Only Members with `Timeout Members` permission can time others out. This is default-off, so **Owners+Admins will need to grant permission to others**. Go to \"Server Settings\" > Roles. \n<:dot:843249351291043851> Anyone can timeout another member with a role below their own if they have the permission. \n<:dot:843249351291043851>Members who leave and re-join the server will still be in timeout. \n<:dot:843249351291043851> Members in timeout need to upgrade to latest client version to see the time remaining in their timeout. You may need to manually update to latest iOS and Android clients. \n<:dot:843249351291043851>Learn more about this feature here:  https://dis.gd/timeout",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0000",
+            "id": 867538663137869845
+        },
+        "timestamp": "2021-12-23T11:08:07.180000+00:00",
+        "attachments": [
+            "https://cdn.discordapp.com/attachments/667560445975986190/922589802782666772/Screen_Shot_2021-12-20_at_11.00.15_AM.png?ex=668ef235&is=668da0b5&hm=06ea082deceab671e8188cfd32b4944ca5fba1ba45dd2292d5039c9b726f4d73&",
+            "https://cdn.discordapp.com/attachments/667560445975986190/922589802983989289/Screen_Shot_2021-12-20_at_12.37.16_PM.png?ex=668ef235&is=668da0b5&hm=7debacb609abf064004732a4a586a75af589dcb12737fc17fe143b67c6cf18d4&",
+            "https://cdn.discordapp.com/attachments/667560445975986190/922589803223089162/Screen_Shot_2021-12-20_at_10.59.08_AM.png?ex=668ef235&is=668da0b5&hm=1cbc390813ad5ebf9dce6c325ce0125794d7af69e293678eb2ea423d0d8ac722&"
+        ]
+    },
+    {
+        "content": "Hey Community Admins & Mods! It's time for another update:\n\n** 📆 Events feature is now live to all servers**\nWe're excited to share a better way to organize raid nights, study groups, trivia nights, or your next holiday gathering. You'll now be able to create and schedule Events that are directly displayed in your server. Members can RSVP, share, and will also be notified when the event starts. \n    - Events can be in Voice channels, Stage channels, or in a \"free-form\" location (Twitch link, IRL, a text channel). \n    - Only Members with `Manage Events` permission can create Events. This is default-off, so admins will need to grant it to others.\n    - The Events tab only shows to Members if there is an upcoming event. \n    - Both Community and non-Community servers can utilize Events.\n    - HC Article here: https://dis.gd/events\n\n **<:Partner:847224325697437716> Applications are open for the Discord Partner Program**\nWe love to support communities that invest time and effort on Discord—interested in joining the pack? Apply now and get rewarded for creating an engaged community with our Partner Program. https://dis.gd/partnerapps\n    - As a server with Community settings enabled, you can apply in-app on the Partner Program tab if your server meets our requirements.\n    - Once your application is received, your community will be reviewed based on quantitative and qualitative factors to see if it's a great fit for Partnership. Meeting the requirements to apply doesn't guarantee acceptance. \n    - Best of luck to all you aspiring Partners out there!\n\nThanks for reading!",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0000",
+            "id": 867538663137869845
+        },
+        "timestamp": "2021-11-15T08:39:20.485000+00:00",
+        "attachments": [
+            "https://cdn.discordapp.com/attachments/667560445975986190/908793953984344064/Event_List.png?ex=668f8393&is=668e3213&hm=f6a43d49874d7aaee0edcb2cfe8c23f62b281688f8805c6a3f4fb971903940e5&"
+        ]
+    },
+    {
+        "content": "Hey Community Admins & Mods! \n\nWe’ve got some exciting and important updates that we wanted to share with you today. Hopefully these updates are valuable in helping you build and create world class communities here on Discord.\n\n**⭐ __Custom Role Icons__**\n\nWe’ve just introduced our newest perk to **Level 2 Boosting - custom role icons**, which gives you a fun way to customize and distinguish roles in your server. You’ll be able to see this new feature on both desktop and mobile, but you’ll need to use desktop to set, change, or delete icons for now!\n\nIcons for each role will display in the members list and next to each member's name in chat, and you can see all icons associated with your roles in your user profile within the server. The role icon that shows next to someone's name in chat is from their highest role (according to Server Settings > Roles hierarchy).\n\nHave more questions? Check our Help Center article here: https://dis.gd/customroleiconsFAQ\n\n**<:boost:893279428598173747>__New Boost Level Pricing__**\n\nWe've reduced the number of boosts for Levels 2 and 3 in Server Boosting by half thanks to feedback from our community. Your servers now need 7 boosts to reach Level 2 and 14 boosts to hit Level 3. It’s possible that at this new price point your server may already be at a new level. You can see what those new perks are under Server Name > Server Boost.\n\n**📆 __Coming Soon: Scheduled Events__**\n\nWe’ve just started to roll out a new feature: Scheduled Events. This will allow you to plan ahead and schedule events in Voice or Stage channels as well as a free-form option for events being hosted outside of Discord (link or address) or in a text channel. \n\nThis will be rolling out to 100% of servers over the next few weeks so be on the lookout. For more information check out our Help Center article here: https://support.discord.com/hc/en-us/articles/4409494125719\n\n**<:serverdiscovery:893279664506798130>  __New Discovery Eligibility__**\n\nServer Discovery member requirement has now dropped from ~~7000~~ to **1000 members.** You can go to \"Server Settings\" > \"Discovery\" to check if your server is now eligible. \n\n**<:stagechannel:826978986340253726> __Sunset of Stage Discovery__**\n\nFinally, we’ve spent some time assessing our latest feature Stage Discovery and where best to serve our communities moving forward. We have made the decision that **we will be sunsetting Stage Discovery starting on October 4th.** For more info on why we’ve made this decision and what’s to come for communities for the rest of the year check out our latest blog post here: https://discord.com/blog/whats-next-for-communities-at-discord",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0000",
+            "id": 867538663137869845
+        },
+        "timestamp": "2021-10-04T22:19:36.731000+00:00",
+        "attachments": [
+            "https://cdn.discordapp.com/attachments/667560445975986190/893564738083127296/Combo.jpg?ex=668f7b43&is=668e29c3&hm=c9afbbe5123ad090ee84eeaa004840c9852b735535dab3ed12a181c423d9d032&"
+        ]
+    },
+    {
+        "content": "Hi Admins and Mods!\n\n**Today we are officially launching Threads,** which can help you and your community organize conversations by topic within a channel. Learn more about this feature in our blog here: https://dis.gd/threads-blog \n\n**Threads** are both a new means in which your community can engage in conversation and a new surface to consider when moderating servers. So, we wanted to give you a heads up on what this means for your community:\n\n    - Threads can be created from any existing message or from the + icon in the chat bar. Learn the basics in the Threads FAQ Help Center Article here: https://support.discord.com/hc/en-us/articles/4403205878423\n    - We have three new permissions to help you fine-tune which members can create threads, and which channels Threads can be made in. Learn more here: https://support.discord.com/hc/en-us/articles/4404809613847\n    - We’re initially slow rolling out Threads on Discord, while we monitor performance, but hope to get it to all servers by end of the week. \n\n⚠️ __**Important**__ ⚠️ \nFor now, Threads will not be enabled by default for Community servers. However, once you get access, you will have a new server settings tab on the web or in your client called **“Threads Early Access.”** \n\nFrom there, you can turn on Threads by clicking “Enable Threads,” and customize your Thread permissions for your community (e.g. enable in specific channels or disable for certain roles). \n\n**Otherwise, on August 17th, Thread permissions will be default-on for all Community servers too. **\n\nHappy 🧵ing!",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0000",
+            "id": 867538663137869845
+        },
+        "timestamp": "2021-07-30T03:18:29.028000+00:00",
+        "attachments": [
+            "https://cdn.discordapp.com/attachments/667560445975986190/869724784861265982/Discord_Threads_Community_Enable.png?ex=668f1ad3&is=668dc953&hm=c68427493e5cf29be0cef3e2e64c34d440edb001152720d59588356a9e8db868&"
+        ]
+    },
+    {
+        "content": "This channel has been set up to receive official Discord announcements for admins and moderators of Community servers. We'll let you know about important updates, such as new moderation features or changes to your server's eligibility for Server Discovery, here.\n\nYou can change which channel these messages are sent to at any time inside Server Settings. We recommend choosing your staff channel, as some information may be sensitive to your server.\n\nThanks for choosing Discord as the place to build your community!",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0001",
+            "id": 669627189624307712
+        },
+        "timestamp": "2021-07-21T22:48:55.527000+00:00",
+        "attachments": []
+    },
+    {
+        "content": "This channel has been set up to receive official Discord announcements for admins and moderators of Community servers. We'll let you know about important updates, such as new moderation features or changes to your server's eligibility for Server Discovery, here.\n\nYou can change which channel these messages are sent to at any time inside Server Settings. We recommend choosing your staff channel, as some information may be sensitive to your server.\n\nThanks for choosing Discord as the place to build your community!",
+        "author": {
+            "name": "Community Updates",
+            "discriminator": "0001",
+            "id": 669627189624307712
+        },
+        "timestamp": "2021-02-24T06:38:47.256000+00:00",
+        "attachments": []
+    }
+]
