@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discord Chat Archive</title>
+<!-- Link to the DiscordChatExporter CSS file -->
+<link rel="stylesheet" href="discord-.css">
+<style>
+  body {
+    font-family: 'Whitney', 'Helvetica Neue', Arial, sans-serif;
+    background-color: #36393f;
+    margin: 0;
+    padding: 20px;
+    color: #dcddde;
+  }
+
+  #messages {
+    background-color: #2f3136;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #2f3136;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #7289da;
+    border-radius: 10px;
+  }
+
+  .message {
+    display: flex;
+    padding: 10px 0;
+    border-bottom: 1px solid #202225;
+  }
+
+  .message:last-child {
+    border-bottom: none;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  .message-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .author {
+    font-weight: 600;
+    color: #7289da;
+    margin-bottom: 2px;
+    cursor: pointer;
+  }
+
+  .timestamp {
+    color: #72767d;
+    font-size: 0.75em;
+    margin-left: 10px;
+  }
+
+  .text {
+    color: #dcddde;
+    line-height: 1.4;
+    font-size: 0.9em;
+  }
+
+  .attachment-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .attachment {
+    max-width: 200px;
+    max-height: 200px;
+    margin: 5px;
+    border-radius: 5px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .attachment:hover {
+    transform: scale(1.05);
+  }
+
+  .file-upload-container {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    margin-top: 10px;
+  }
+
+  .file-upload {
+    background-color: #7289da;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .file-upload:hover {
+    background-color: #5469a4;
+  }
+
+  .file-upload:focus {
+    outline: none;
+  }
+
+  .file-upload-container input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .selected-file {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #7289da;
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+
+  .modal-content {
+    background-color: #2f3136;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 8px;
+    position: relative;
+  }
+
+  .modal-content h2 {
+    color: #7289da;
+  }
+
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .credits-popup {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #36393f;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 80%;
+    max-height: 80%;
+    overflow-y: auto;
+    color: #dcddde;
+  }
+
+  .credits-popup-content {
+    margin-bottom: 20px;
+  }
+
+  .credits-popup h2 {
+    color: #7289da;
+    margin-top: 0;
+  }
+
+  .credits-popup p {
+    margin-top: 0;
+    line-height: 1.6;
+  }
+
+  .credits-popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #dcddde;
+    cursor: pointer;
+  }
+
+  .modern-button {
+    background-color: #2A50D8;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+  }
+
+  .modern-button:hover {
+    background-color: #5469a4;
+  }
+
+  .modern-button:focus {
+    outline: none;
+  }
+
+  /* Profile Card Modal Styles */
+  #profileCardModal .modal-content {
+    max-width: 300px;
+    text-align: center;
+  }
+
+  #profileCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #profileCard .avatar {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+
+  #profileCard h2 {
+    color: #7289da;
+    margin: 10px 0;
+  }
+
+  #profileCard p {
+    color: #dcddde;
+    margin: 5px 0;
+  }
+</style>
+</head>
+<body>
+
+<h1>Discord Chat Archive</h1>
+
+<!-- Upload Method Modal -->
+<div id="uploadMethodModal" class="modal">
+  <div class="modal-content">
+    <h2>Select Upload Method</h2>
+    <button class="modern-button" onclick="chooseFile()">From Computer</button>
+    <button class="modern-button" onclick="chooseLink()">From Link</button>
+  </div>
+</div>
+
+<!-- Link Input Modal -->
+<div id="linkInputModal" class="modal">
+  <div class="modal-content">
+    <h2>Enter File Link</h2>
+    <input type="text" id="fileLinkInput" placeholder="Enter file link">
+    <button class="modern-button" onclick="sendLink()">Send</button>
+  </div>
+</div>
+
+<!-- File Upload Container -->
+<div class="file-upload-container">
+  <button class="file-upload" onclick="openUploadMethodModal()">Choose File</button>
+  <input type="file" id="fileInput" style="display: none;">
+  <button class="modern-button" onclick="openCreditsPopup()">Credits & Info</button>
+  <span class="selected-file" id="selectedFile"></span>
+</div>
+
+<div id="messages"></div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <img class="modal-content" id="modalImg">
+</div>
+
+<!-- Profile Card Modal -->
+<div id="profileCardModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeProfileCard()">&times;</span>
+    <div id="profileCard">
+      <img id="profileAvatar" class="avatar" src="" alt="Avatar">
+      <h2 id="profileName"></h2>
+      <p id="profileDiscriminator"></p>
+      <p id="profileId"></p>
+    </div>
+  </div>
+</div>
+
+<!-- Credits Popup -->
+<div id="creditsPopup" class="credits-popup">
+  <div class="credits-popup-content">
+    <span class="credits-popup-close" onclick="closeCreditsPopup()">&times;</span>
+    <h2>Credits</h2>
+    <p>This Discord Chat Archive tool was created by MilitaryLotus (dtester)</p>
+    <h2>How to Use</h2>
+    <p>1. Upload a Discord chat JSON file using the "Choose File" button<br>
+        2. View the rendered messages in the chat<br>
+        3. Click on a user's name to see their profile card</p>
+  </div>
+</div>
+
+<script>
+  document.getElementById('fileInput').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const messages = JSON.parse(e.target.result);
+        renderMessages(messages);
+        closeUploadMethodModal(); // Close the modal after file selection
+      };
+      reader.readAsText(file);
+      document.getElementById('selectedFile').textContent = `Selected file: ${file.name}`;
+    }
+  });
+
+  // Function to render messages
+  function renderMessages(messages) {
+    const messagesContainer = document.getElementById('messages');
+    messagesContainer.innerHTML = ''; // Clear any existing messages
+    messages.forEach((message, index) => {
+      const messageElement = document.createElement('div');
+      messageElement.classList.add('message');
+      messageElement.innerHTML = `
+        <img class="avatar" src="${message.author.avatar}" alt="Avatar">
+        <div class="message-content">
+          <div>
+            <span class="author" onclick="showProfileCard(${index})">${message.author.name}#${message.author.discriminator}</span>
+            <span class="timestamp">${new Date(message.timestamp).toLocaleString()}</span>
+          </div>
+          <div class="text">${message.content}</div>
+        </div>`;
+      messagesContainer.appendChild(messageElement);
+
+      // If there are attachments, add them as images
+      if (message.attachments.length) {
+        const attachmentContainer = document.createElement('div');
+        attachmentContainer.classList.add('attachment-container');
+        messageElement.appendChild(attachmentContainer);
+
+        message.attachments.forEach((url, attachmentIndex) => {
+          const img = document.createElement('img');
+          img.src = url;
+          img.classList.add('attachment');
+          img.dataset.messageIndex = index;
+          img.dataset.attachmentIndex = attachmentIndex;
+          attachmentContainer.appendChild(img);
+
+          img.addEventListener('click', function() {
+            const modal = document.getElementById('myModal');
+            const modalImg = document.getElementById('modalImg');
+            modal.style.display = "block";
+            modalImg.src = this.src;
+          });
+        });
+      }
+    });
+    window.messages = messages; // Save messages to a global variable
+  }
+
+  // Function to show the profile card
+  function showProfileCard(index) {
+    const user = window.messages[index].author;
+
+    document.getElementById('profileAvatar').src = user.avatar;
+    document.getElementById('profileName').textContent = user.name;
+    document.getElementById('profileDiscriminator').textContent = `#${user.discriminator}`;
+    document.getElementById('profileId').textContent = `ID: ${user.id}`;
+
+    document.getElementById('profileCardModal').style.display = 'block';
+  }
+
+  // Function to close the profile card
+  function closeProfileCard() {
+    document.getElementById('profileCardModal').style.display = 'none';
+  }
+
+  // Function to close the modal
+  function closeModal() {
+    document.getElementById('myModal').style.display = 'none';
+  }
+
+  // Function to open the credits popup
+  function openCreditsPopup() {
+    document.getElementById('creditsPopup').style.display = 'block';
+  }
+
+  // Function to close the credits popup
+  function closeCreditsPopup() {
+    document.getElementById('creditsPopup').style.display = 'none';
+  }
+
+  // Function to open the upload method modal
+  function openUploadMethodModal() {
+    document.getElementById('uploadMethodModal').style.display = 'block';
+  }
+
+  // Function to close the upload method modal
+  function closeUploadMethodModal() {
+    document.getElementById('uploadMethodModal').style.display = 'none';
+  }
+
+  // Function to close the modal if the user clicks outside of it
+  window.onclick = function(event) {
+    const modal = document.getElementById('myModal');
+    const uploadMethodModal = document.getElementById('uploadMethodModal');
+    const linkInputModal = document.getElementById('linkInputModal');
+    const creditsPopup = document.getElementById('creditsPopup');
+    const profileCardModal = document.getElementById('profileCardModal');
+
+    if (event.target === modal) {
+      modal.style.display = "none";
+    } else if (event.target === uploadMethodModal) {
+      uploadMethodModal.style.display = "none";
+    } else if (event.target === linkInputModal) {
+      linkInputModal.style.display = "none";
+    } else if (event.target === creditsPopup) {
+      creditsPopup.style.display = "none";
+    } else if (event.target === profileCardModal) {
+      profileCardModal.style.display = "none";
+    }
+  }
+
+  // Function to open file upload input
+  function chooseFile() {
+    document.getElementById('fileInput').click();
+  }
+
+  // Function to open link input modal
+  function chooseLink() {
+    document.getElementById('linkInputModal').style.display = 'block';
+    document.getElementById('uploadMethodModal').style.display = 'none';
+  }
+
+  // Function to send link input
+  function sendLink() {
+    const link = document.getElementById('fileLinkInput').value;
+    fetch(link)
+      .then(response => response.json())
+      .then(data => {
+        renderMessages(data);
+        document.getElementById('linkInputModal').style.display = 'none';
+      })
+      .catch(error => console.error('Error fetching JSON:', error));
+  }
+</script>
+</body>
+</html>
