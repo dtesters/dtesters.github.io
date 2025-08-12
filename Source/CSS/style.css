@@ -142,6 +142,7 @@ body{
     transition: 250ms;
     backdrop-filter: blur(5px);
     background-color: #ffffff09;
+    z-index: 1000; /* Ensure form is above the decorative boxes */
 }
 .border-form {
     z-index: -1;
@@ -224,6 +225,7 @@ body{
 /* Profile */
 .profile-form{
     z-index: 9999;
+    position: relative; /* create stacking context for tooltip and status */
     width: 100%;
     height: 100%;
     padding: 20px;
@@ -295,7 +297,7 @@ body{
     padding: 10px;
     border-radius: 5px;
     white-space: nowrap;
-    z-index: 10;
+    z-index: 99999; /* Ensure tooltip overlays everything in the card */
     font-size: 14px;
 }
 .status-tooltip::after {
