@@ -258,7 +258,62 @@ body{
     border-radius: 50%;
     transition: 500ms;
     animation: borderImgColor 3s infinite;
+    position: relative; /* Added for positioning children */
 }
+.status-dot {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ccc; /* Default to grey */
+    border: 3px solid transparent;
+    transition: bottom 0.3s ease, right 0.3s ease;
+}
+
+/* Slight nudge when avatar is hovered */
+.profile-img:hover .status-dot {
+    bottom: 6px;
+    right: 6px;
+}
+
+.idle-moon {
+    background-color: #FAA81A;
+    border-color: transparent;
+    box-shadow: -5px 2px 0 0 #2f3136;
+}
+
+.status-tooltip {
+    display: none;
+    position: absolute;
+    bottom: 110%; /* Position above the profile image */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 10;
+    font-size: 14px;
+}
+.status-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+
+.profile-img:hover .status-tooltip {
+    display: block;
+}
+
 .profile-form .profile-img:hover{
     border-radius: 35%;
 }
@@ -696,6 +751,44 @@ body{
     letter-spacing: 0.01px;
 }
 
+
+/* Discord Info Menu */
+.discord-info-menu {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  cursor: url(/Source/IMG/Dodger_Blue_Pixel_Pointer.png) , default;
+}
+
+.menu-trigger {
+  padding: 5px;
+}
+
+.discord-info-menu:hover .menu-content {
+  display: block;
+}
+
+.menu-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1B1C1C;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  z-index: 10;
+  min-width: 150px;
+  color: #fff;
+}
+
+.menu-content p {
+  margin: 5px 0;
+  font-size: 12px;
+}
 
 
 @media screen and (min-width: 320px) and (max-width: 480px) {
