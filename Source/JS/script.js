@@ -19,6 +19,21 @@ let serverIconElem = _ID('server-img')
 let serverMembersElem = _ID('server-members')
 let serverOnlineMembersElem = _ID('server-online-members')
 
+// Discord Status
+const statusIndicator = document.getElementById('status-indicator');
+const discordStatus = document.getElementById('discord-status');
+const discordJoined = document.getElementById('discord-joined');
+
+const lanyardApiUrl = 'https://api.lanyard.rest/v1/users/591534252307513347';
+
+const statusColors = {
+    online: '#3BA55D',
+    idle: '#FAA81A',
+    dnd: '#ED4245',
+    offline: '#747F8D'
+};
+
+
 // --- API ---------------------
 let dataObjectUser
 let dataObjectServer
@@ -61,6 +76,21 @@ fetch (apiUrlServer)
         console.error('Error:', error);
 });
 
+fetch(lanyardApiUrl)
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const status = data.data.discord_status;
+            const userId = data.data.discord_user.id;
+            const timestamp = (BigInt(userId) >> 22n) + 1420070400000n;
+            const joinedAt = new Date(Number(timestamp)).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            
+            discordStatus.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+            statusIndicator.style.backgroundColor = statusColors[status] || '#ccc';
+            discordJoined.textContent = joinedAt;
+        }
+    })
+    .catch(error => console.error('Error fetching Lanyard data:', error));
 
 
 // Pages Menu
@@ -87,23 +117,32 @@ btnMenu.forEach(btn=> {
 // Loader
 let loader = $.querySelector('.page_loader')
 let page = $.querySelector('.container')
+const boxesContainer = $.querySelector('.boxes');
+const boxSize = 95; // width and height of each box
+const gap = 1; // gap between boxes
+
+function createBoxes() {
+  boxesContainer.innerHTML = ''; // Clear existing boxes if any
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  const cols = Math.ceil(width / (boxSize + gap));
+  const rows = Math.ceil(height / (boxSize + gap));
+  const totalBoxes = cols * rows;
+  for (let i = 0; i < totalBoxes; i++) {
+    const box = $.createElement('div');
+    box.classList.add('box');
+    boxesContainer.appendChild(box);
+  }
+}
+
+window.addEventListener('resize', createBoxes);
 window.addEventListener('load', e =>{
     loader.style.display = 'none'
     page.style.display = 'block'
+    createBoxes();
 })
 
-// Text Animate
-let texts = $.querySelector('.hello-animate')
-let animate = false
-setInterval(e=>{
-    if(!animate){
-        texts.classList.add('enableText')
-        texts.classList.remove('disableText')
-        animate = true
-    } else {
-        texts.classList.add('disableText')
-        texts.classList.remove('enableText')
-        animate = false
-    }
-}, 3000)
+
+
+
 
