@@ -92,6 +92,58 @@ fetch(lanyardApiUrl)
     })
     .catch(error => console.error('Error fetching Lanyard data:', error));
 
+// --- Real-time updates using Lanyard WebSocket ---
+function connectLanyardWebsocket(userId) {
+    try {
+        const ws = new WebSocket('wss://api.lanyard.rest/socket');
+
+        ws.addEventListener('open', () => {
+            // subscribe to the user's updates
+            ws.send(JSON.stringify({ op: 2, d: { subscribe_to_id: userId } }));
+        });
+
+        ws.addEventListener('message', (event) => {
+            try {
+                const payload = JSON.parse(event.data);
+                if (payload.t === 'INIT_STATE' || payload.t === 'PRESENCE_UPDATE') {
+                    const d = payload.d;
+                    if (d && d.discord_status) {
+                        const status = d.discord_status;
+                        discordStatus.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+                        statusIndicator.style.backgroundColor = statusColors[status] || '#ccc';
+                    }
+                }
+            } catch (e) {
+                console.error('Error parsing Lanyard WS message', e);
+            }
+        });
+
+        ws.addEventListener('close', (ev) => {
+            // try to reconnect after short delay
+            setTimeout(() => connectLanyardWebsocket(userId), 2500);
+        });
+
+        ws.addEventListener('error', (err) => {
+            console.error('Lanyard WS error', err);
+            ws.close();
+        });
+    } catch (e) {
+        console.error('Failed to connect Lanyard websocket', e);
+    }
+}
+
+// initialize websocket subscription (use the same id as lanyardApiUrl)
+// extract the id from the API url
+try {
+    const match = lanyardApiUrl.match(/users\/(\d+)/);
+    if (match) {
+        const userid = match[1];
+        connectLanyardWebsocket(userid);
+    }
+} catch (e) {
+    console.error('Error initiating Lanyard WS', e);
+}
+
 
 // Pages Menu
 let pageMenu = $.querySelectorAll('.page')
@@ -118,21 +170,41 @@ btnMenu.forEach(btn=> {
 let loader = $.querySelector('.page_loader')
 let page = $.querySelector('.container')
 const boxesContainer = $.querySelector('.boxes');
-const boxSize = 95; // width and height of each box
 const gap = 1; // gap between boxes
 
 function createBoxes() {
-  boxesContainer.innerHTML = ''; // Clear existing boxes if any
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-  const cols = Math.ceil(width / (boxSize + gap));
-  const rows = Math.ceil(height / (boxSize + gap));
-  const totalBoxes = cols * rows;
-  for (let i = 0; i < totalBoxes; i++) {
-    const box = $.createElement('div');
-    box.classList.add('box');
-    boxesContainer.appendChild(box);
-  }
+    boxesContainer.innerHTML = ''; // Clear existing boxes if any
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    // Responsive box sizing: mobile gets smaller boxes
+    let calculatedBoxSize;
+    if (width <= 480) {
+        calculatedBoxSize = 33;
+    } else if (width <= 768) {
+        calculatedBoxSize = 70;
+    } else {
+        calculatedBoxSize = 95;
+    }
+
+    const cols = Math.ceil(width / (calculatedBoxSize + gap));
+    const rows = Math.ceil(height / (calculatedBoxSize + gap));
+    const totalBoxes = cols * rows;
+
+    // Use CSS Grid for precise placement
+    boxesContainer.style.display = 'grid';
+    boxesContainer.style.gridTemplateColumns = `repeat(${cols}, ${calculatedBoxSize}px)`;
+    boxesContainer.style.gridAutoRows = `${calculatedBoxSize}px`;
+    boxesContainer.style.gap = `${gap}px`;
+
+    for (let i = 0; i < totalBoxes; i++) {
+        const box = $.createElement('div');
+        box.classList.add('box');
+        // enforce size inline so grid is consistent even if CSS differs
+        box.style.width = `${calculatedBoxSize}px`;
+        box.style.height = `${calculatedBoxSize}px`;
+        boxesContainer.appendChild(box);
+    }
 }
 
 window.addEventListener('resize', createBoxes);
