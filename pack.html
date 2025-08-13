@@ -33,11 +33,72 @@
 
       /* modal */
       .modal-backdrop{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.75)); z-index:2000 }
+      /* Fancy alert */
+      .fancy-alert-backdrop{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.45); z-index:3000 }
+      .fancy-alert{ width:420px; max-width:92%; background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02)); border-radius:12px; padding:18px; box-shadow:0 12px 40px rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.04); animation: alertIn 240ms ease both }
+      .fancy-alert h3{ margin:0 0 8px 0; font-size:16px }
+      .fancy-alert p{ margin:0 0 12px 0; color:var(--muted) }
+      .fancy-alert .actions{ display:flex; justify-content:flex-end; gap:8px }
+      .fancy-alert .btn{ padding:8px 12px; border-radius:8px; cursor:pointer; border:none }
+      .fancy-alert .btn.primary{ background:var(--accent); color:#fff }
+      .fancy-alert .btn.ghost{ background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--muted) }
+      @keyframes alertIn{ from{ transform: translateY(12px) scale(.98); opacity:0 } to{ transform: translateY(0) scale(1); opacity:1 } }
       .modal-backdrop.show{ display:flex }
       .modal-card{ max-width:90%; max-height:85%; border-radius:12px; overflow:auto }
       .modal-img{ max-width:100%; height:auto; display:block; border-radius:8px }
 
       @media (max-width:820px){ .container{ grid-template-columns: 1fr; } .sidebar{ order:2 } }
+
+      /* Fancy page mode (easter egg) */
+      @keyframes bgMove {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      body.fancy-mode {
+        background: linear-gradient(120deg, #0b1020, #0e0720, #071022, #07121a);
+        background-size: 400% 400%;
+        animation: bgMove 12s ease infinite;
+      }
+      body.fancy-mode .container{
+        box-shadow: 0 24px 80px rgba(88,101,242,0.12), inset 0 0 60px rgba(88,101,242,0.04);
+        border-radius:14px;
+        border: 1px solid rgba(88,101,242,0.12);
+        animation: borderPulse 3s ease-in-out infinite;
+      }
+      body.fancy-mode .sidebar, body.fancy-mode .main{
+        border-radius:14px;
+        box-shadow: 0 12px 50px rgba(3,6,12,0.6), 0 0 30px rgba(88,101,242,0.03) inset;
+        transition: box-shadow 400ms;
+      }
+      body.fancy-mode .message{ transform-origin:left center; animation: floatMsg 6s ease-in-out infinite }
+      @keyframes floatMsg { 0%{ transform: translateY(0)} 50%{ transform: translateY(-6px)} 100%{ transform: translateY(0)} }
+      body.fancy-mode .avatar{ box-shadow: 0 6px 18px rgba(88,101,242,0.14); border-radius:12px }
+      /* subtle animated border glow */
+      body.fancy-mode .container::before{ content:''; position:absolute; inset:-2px; background:linear-gradient(90deg, rgba(88,101,242,0.18), rgba(60,200,180,0.12), rgba(88,101,242,0.18)); filter:blur(18px); z-index:-1; border-radius:16px; opacity:0.95; animation: bgMove 10s linear infinite }
+
+      @keyframes borderPulse {
+        0% {
+          box-shadow: 0 24px 60px rgba(88,101,242,0.06), inset 0 0 30px rgba(88,101,242,0.02);
+          border-color: rgba(88,101,242,0.08);
+        }
+        50% {
+          box-shadow: 0 30px 100px rgba(88,101,242,0.18), inset 0 0 80px rgba(88,101,242,0.06);
+          border-color: rgba(60,200,180,0.16);
+        }
+        100% {
+          box-shadow: 0 24px 60px rgba(88,101,242,0.06), inset 0 0 30px rgba(88,101,242,0.02);
+          border-color: rgba(88,101,242,0.08);
+        }
+      }
+
+      /* pulse inner panels too */
+      body.fancy-mode .sidebar, body.fancy-mode .main{ animation: innerPulse 3s ease-in-out infinite }
+      @keyframes innerPulse {
+        0% { box-shadow: 0 12px 50px rgba(3,6,12,0.6), 0 0 8px rgba(88,101,242,0.02) inset; }
+        50% { box-shadow: 0 18px 70px rgba(3,6,12,0.6), 0 0 30px rgba(88,101,242,0.06) inset; }
+        100% { box-shadow: 0 12px 50px rgba(3,6,12,0.6), 0 0 8px rgba(88,101,242,0.02) inset; }
+      }
     </style>
   </head>
   <body>
@@ -59,9 +120,12 @@
         const [messages, setMessages] = useState([]);
         const [filter, setFilter] = useState('');
         const [modalSrc, setModalSrc] = useState(null);
+        const [showImportModal, setShowImportModal] = useState(false);
+        const [urlInput, setUrlInput] = useState('');
+        const [alert, setAlert] = useState(null); // {title, message}
         const fileInputRef = useRef();
 
-        function openFile(){ fileInputRef.current.click(); }
+        function openFile(){ setShowImportModal(true); }
 
         function onFile(e){
           const f = e.target.files && e.target.files[0];
@@ -73,8 +137,25 @@
               // normalize to array of messages
               setMessages(Array.isArray(data) ? data : (data.messages || []));
             }catch(err){ alert('Invalid JSON file') }
+          // if import modal was open, close it after file chosen
+          setShowImportModal(false);
           };
           r.readAsText(f);
+        }
+
+        async function handleUrlImport() {
+          if (!urlInput) return alert('Enter a URL');
+          try {
+            const res = await fetch(urlInput);
+            if (!res.ok) throw new Error('Network response was not ok');
+            const data = await res.json();
+            setMessages(Array.isArray(data) ? data : (data.messages || []));
+            setShowImportModal(false);
+            setUrlInput('');
+          } catch (err) {
+            console.error(err);
+            setAlert({ title: 'Fetch error', message: 'Failed to fetch or parse JSON from URL' });
+          }
         }
 
         function renderMessage(m, i){
@@ -103,15 +184,132 @@
           )
         }
 
+        // easter egg: clear click tracker
+        const clearTrackerRef = React.useRef({ count:0, last:0, timer:null });
+        const fancyRef = React.useRef({ enabled:false, raf: null, canvas: null, particles: [] });
+
+        function startFancy() {
+          if (fancyRef.current.enabled) return;
+          fancyRef.current.enabled = true;
+          document.body.classList.add('fancy-mode');
+          // create canvas overlay for particles
+          const canvas = document.createElement('canvas');
+          canvas.id = 'fancy-canvas';
+          canvas.style.position = 'fixed';
+          canvas.style.top = '0';
+          canvas.style.left = '0';
+          canvas.style.width = '100%';
+          canvas.style.height = '100%';
+          canvas.style.pointerEvents = 'none';
+          canvas.style.zIndex = '2500';
+          document.body.appendChild(canvas);
+          fancyRef.current.canvas = canvas;
+          const ctx = canvas.getContext('2d');
+
+          function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+          }
+          resize();
+          window.addEventListener('resize', resize);
+
+          // create particles
+          const particles = [];
+          const colours = ['rgba(88,101,242,0.9)', 'rgba(60,200,180,0.9)', 'rgba(255,120,120,0.9)'];
+          for (let i=0;i<80;i++){
+            particles.push({
+              x: Math.random()*canvas.width,
+              y: Math.random()*canvas.height,
+              r: 1 + Math.random()*3,
+              vx: (Math.random()-0.5)*0.6,
+              vy: (Math.random()-0.5)*0.6,
+              c: colours[Math.floor(Math.random()*colours.length)],
+              alpha: 0.2 + Math.random()*0.6
+            });
+          }
+          fancyRef.current.particles = particles;
+
+          function tick(){
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            particles.forEach(p=>{
+              p.x += p.vx; p.y += p.vy;
+              if (p.x < -10) p.x = canvas.width+10;
+              if (p.x > canvas.width+10) p.x = -10;
+              if (p.y < -10) p.y = canvas.height+10;
+              if (p.y > canvas.height+10) p.y = -10;
+              ctx.beginPath();
+              ctx.fillStyle = p.c.replace('0.9', p.alpha.toFixed(2));
+              ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+              ctx.fill();
+            });
+            fancyRef.current.raf = requestAnimationFrame(tick);
+          }
+          fancyRef.current.raf = requestAnimationFrame(tick);
+          // attach resize remover
+          fancyRef.current._onResize = resize;
+        }
+
+        function stopFancy() {
+          if (!fancyRef.current.enabled) return;
+          fancyRef.current.enabled = false;
+          document.body.classList.remove('fancy-mode');
+          // stop animation and remove canvas
+          if (fancyRef.current.raf) cancelAnimationFrame(fancyRef.current.raf);
+          if (fancyRef.current.canvas) {
+            window.removeEventListener('resize', fancyRef.current._onResize);
+            try { fancyRef.current.canvas.remove(); } catch(e) {}
+            fancyRef.current.canvas = null;
+          }
+          fancyRef.current.particles = [];
+        }
+
+        function handleClearClick(){
+          const now = Date.now();
+          const st = clearTrackerRef.current;
+          if (now - st.last > 5000) { st.count = 0; }
+          st.count++;
+          st.last = now;
+          if (st.timer) clearTimeout(st.timer);
+          st.timer = setTimeout(()=>{ st.count = 0 }, 5000);
+          setMessages([]);
+          // trigger fancy mode if 5 clicks within 5s
+          if (st.count >=5) {
+            if (fancyRef.current.enabled) {
+              stopFancy();
+              setAlert({ title: 'Fancy mode disabled', message: 'Easter egg turned off.' });
+            } else {
+              startFancy();
+              setAlert({ title: 'Easter Egg!', message: 'Fancy mode activated ✨' });
+            }
+            st.count = 0;
+          }
+        }
+
         return (
           <div className="container">
-            <div className="sidebar">
+              <div className="sidebar">
               <h1>Discord Chat Archive</h1>
-              <div style={{display:'flex',gap:8, marginBottom:12}}>
+                <div style={{display:'flex',gap:8, marginBottom:12}}>
                 <button className="file-btn" onClick={openFile}>Import JSON</button>
-                <button className="ghost-btn" onClick={()=>{ setMessages([]) }}>Clear</button>
+                <button className="ghost-btn" onClick={handleClearClick}>Clear</button>
               </div>
               <input ref={fileInputRef} type="file" accept="application/json" style={{display:'none'}} onChange={onFile} />
+              {/* Import Modal */}
+              {showImportModal && (
+                <div style={{marginTop:8, padding:12, background:'rgba(0,0,0,0.4)', borderRadius:8}}>
+                  <div style={{marginBottom:8}}>Choose import method:</div>
+                  <div style={{display:'flex', gap:8}}>
+                    <button className="file-btn" onClick={()=>{ fileInputRef.current.click(); }}>From file</button>
+                    <div style={{flex:1}}>
+                      <input className="search" placeholder="Enter JSON URL..." value={urlInput} onChange={e=>setUrlInput(e.target.value)} />
+                      <div style={{display:'flex', gap:8, marginTop:8}}>
+                        <button className="file-btn" onClick={handleUrlImport}>Import from URL</button>
+                        <button className="ghost-btn" onClick={()=>{ setShowImportModal(false); setUrlInput(''); }}>Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
               <p style={{color:'var(--muted)', marginTop:6}}>Tip: export Discord JSON or use a channel export. Click attachments to preview.</p>
               <div style={{height:16}}></div>
               <div style={{borderTop:'1px solid rgba(255,255,255,0.02)', paddingTop:12}}>
@@ -137,6 +335,19 @@
                 </div>
               )}
             </div>
+            {/* Fancy alert */}
+            {alert && (
+              <div className="fancy-alert-backdrop" onClick={()=>setAlert(null)}>
+                <div className="fancy-alert" onClick={e=>e.stopPropagation()}>
+                  <h3>{alert.title}</h3>
+                  <p>{alert.message}</p>
+                  <div className="actions">
+                    <button className="btn ghost" onClick={()=>setAlert(null)}>Close</button>
+                    <button className="btn primary" onClick={()=>setAlert(null)}>OK</button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         )
       }
