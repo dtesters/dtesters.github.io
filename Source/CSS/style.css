@@ -292,24 +292,70 @@ body{
     bottom: 110%; /* Position above the profile image */
     left: 50%;
     transform: translateX(-50%);
-    background-color: #333;
+    background-color: rgba(6,8,10,0.82); /* darker but still translucent */
     color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    white-space: nowrap;
+    padding: 10px 12px;
+    border-radius: 8px;
+    white-space: normal; /* allow wrapping */
     z-index: 99999; /* Ensure tooltip overlays everything in the card */
     font-size: 14px;
+    line-height: 1.25;
+    max-width: 280px;
+    text-align: left;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    backdrop-filter: blur(4px);
+    padding-top: 12px; /* give a little extra top space so text isn't too close to rounded corner */
+    transform: translateZ(0); /* improve rendering */
 }
 .status-tooltip::after {
     content: '';
     position: absolute;
     top: 100%;
     left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
+    margin-left: -6px;
+    border-width: 6px;
     border-style: solid;
-    border-color: #333 transparent transparent transparent;
+    border-color: rgba(6,8,10,0.82) transparent transparent transparent;
 }
+
+.status-tooltip p {
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #fff;
+}
+
+.status-tooltip p + p {
+    margin-top: 6px;
+}
+
+/* Floating tooltip (root-level) */
+.floating-status-tooltip, #floating-status-tooltip {
+    position: fixed;
+    z-index: 2147483640; /* very high to override everything */
+    display: none;
+    background-color: rgba(6,8,10,0.36); /* more transparent so background animations show through */
+    color: #fff;
+    padding: 12px 14px;
+    border-radius: 10px;
+    max-width: 320px;
+    white-space: normal;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: left;
+    -webkit-font-smoothing: antialiased;
+    backdrop-filter: blur(6px);
+    background-clip: padding-box;
+}
+.floating-status-tooltip p{ margin:0; padding:0; font-weight:500 }
+.floating-status-tooltip p + p { margin-top:6px }
+
+/* Force-hide original in-card tooltip to avoid duplication/clipping */
+.status-tooltip { display: none !important }
 
 
 .profile-img:hover .status-tooltip {

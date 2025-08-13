@@ -23,6 +23,117 @@ let serverOnlineMembersElem = _ID('server-online-members')
 const statusIndicator = document.getElementById('status-indicator');
 const discordStatus = document.getElementById('discord-status');
 const discordJoined = document.getElementById('discord-joined');
+const profileImgElem = document.querySelector('.profile-img');
+const statusTooltipElem = document.querySelector('.status-tooltip');
+// floating tooltip (separate top-level element that overrides everything)
+let floatingTooltipElem = null;
+let floatingDiscordStatusElem = null;
+let floatingDiscordJoinedElem = null;
+
+function computeJoinedFromSnowflake(id) {
+    try {
+        const timestamp = (BigInt(id) >> 22n) + 1420070400000n;
+        return new Date(Number(timestamp)).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    } catch (e) {
+        return null;
+    }
+}
+
+function updateStatusText(statusText, joinedText) {
+    if (typeof statusText === 'string') {
+        if (discordStatus) discordStatus.textContent = statusText;
+        if (floatingDiscordStatusElem) floatingDiscordStatusElem.textContent = statusText;
+    }
+    if (typeof joinedText === 'string') {
+        if (discordJoined) discordJoined.textContent = joinedText;
+        if (floatingDiscordJoinedElem) floatingDiscordJoinedElem.textContent = joinedText;
+    }
+}
+
+function createFloatingTooltip() {
+    if (floatingTooltipElem) return;
+    floatingTooltipElem = document.createElement('div');
+    floatingTooltipElem.id = 'floating-status-tooltip';
+    floatingTooltipElem.className = 'floating-status-tooltip';
+    floatingTooltipElem.innerHTML = `
+        <p>Status: <span id="floating-discord-status">Loading...</span></p>
+        <p>Joined: <span id="floating-discord-joined">Loading...</span></p>
+    `;
+    document.body.appendChild(floatingTooltipElem);
+    // cache inner elements for updates
+    floatingDiscordStatusElem = floatingTooltipElem.querySelector('#floating-discord-status');
+    floatingDiscordJoinedElem = floatingTooltipElem.querySelector('#floating-discord-joined');
+}
+
+// Move tooltip out of the card into document.body and position it to avoid clipping
+function initTooltip() {
+    if (!profileImgElem) return;
+
+    // create a separate floating tooltip that lives at body root so it cannot be clipped
+    try {
+        createFloatingTooltip();
+    } catch (e) {}
+
+    // hide the original tooltip to avoid duplication
+    if (statusTooltipElem) statusTooltipElem.style.display = 'none';
+
+    // ensure floating tooltip starts hidden
+    if (floatingTooltipElem) {
+        floatingTooltipElem.style.position = 'fixed';
+        floatingTooltipElem.style.zIndex = '2147483000';
+        floatingTooltipElem.style.display = 'none';
+    }
+
+    function positionTooltip(event) {
+        const rect = profileImgElem.getBoundingClientRect();
+        const el = floatingTooltipElem || statusTooltipElem;
+        if (!el) return;
+        // ensure it's measurable
+        el.style.display = 'block';
+        el.style.visibility = 'hidden';
+        const tw = el.offsetWidth;
+        const th = el.offsetHeight;
+
+        let left = rect.left + rect.width / 2 - tw / 2;
+        let top = rect.top - th - 8; // above by default
+
+        // keep within viewport
+        if (left < 8) left = 8;
+        if (left + tw > window.innerWidth - 8) left = window.innerWidth - tw - 8;
+        // if not enough space above, place below
+        if (top < 8) top = rect.bottom + 8;
+
+        el.style.left = left + 'px';
+        el.style.top = top + 'px';
+        el.style.visibility = 'visible';
+        el.style.display = 'block';
+    }
+
+    profileImgElem.addEventListener('mouseenter', positionTooltip);
+    profileImgElem.addEventListener('mousemove', positionTooltip);
+    profileImgElem.addEventListener('mouseleave', () => {
+        if (floatingTooltipElem) floatingTooltipElem.style.display = 'none';
+        if (statusTooltipElem) statusTooltipElem.style.display = 'none';
+    });
+
+    // On touch devices, toggle on click
+    profileImgElem.addEventListener('click', (e) => {
+        const el = floatingTooltipElem || statusTooltipElem;
+        if (!el) return;
+        if (el.style.display === 'block') {
+            el.style.display = 'none';
+        } else {
+            positionTooltip();
+        }
+    });
+
+    window.addEventListener('resize', () => {
+        const el = floatingTooltipElem || statusTooltipElem;
+        if (el && el.style.display === 'block') positionTooltip();
+    });
+}
+
+initTooltip();
 
 const lanyardApiUrl = 'https://api.lanyard.rest/v1/users/591534252307513347';
 
@@ -132,8 +243,14 @@ function connectLanyardWebsocket(userId) {
                     let presence = data[userId] || data;
                     if (presence && presence.discord_status) {
                         const status = presence.discord_status;
-                        discordStatus.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+                        const formatted = status.charAt(0).toUpperCase() + status.slice(1);
+                        updateStatusText(formatted, null);
                         statusIndicator.style.backgroundColor = statusColors[status] || '#ccc';
+                        // joined date from snowflake if available
+                        if (presence.discord_user && presence.discord_user.id) {
+                            const joined = computeJoinedFromSnowflake(presence.discord_user.id);
+                            if (joined) updateStatusText(null, joined);
+                        }
                     }
                 }
             } catch (e) {
