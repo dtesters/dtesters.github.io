@@ -120,12 +120,31 @@ function initTooltip() {
     profileImgElem.addEventListener('click', (e) => {
         const el = floatingTooltipElem || statusTooltipElem;
         if (!el) return;
+        e.stopPropagation();
         if (el.style.display === 'block') {
             el.style.display = 'none';
         } else {
             positionTooltip();
         }
     });
+
+    // touch support: show on touchstart and prevent immediate document hide
+    profileImgElem.addEventListener('touchstart', (e) => {
+        const el = floatingTooltipElem || statusTooltipElem;
+        if (!el) return;
+        e.preventDefault();
+        e.stopPropagation();
+        positionTooltip();
+    }, { passive: false });
+
+    // hide tooltip when tapping elsewhere on the document (mobile)
+    document.addEventListener('touchstart', (e) => {
+        const el = floatingTooltipElem || statusTooltipElem;
+        if (!el) return;
+        if (profileImgElem && !profileImgElem.contains(e.target)) {
+            el.style.display = 'none';
+        }
+    }, { passive: true });
 
     window.addEventListener('resize', () => {
         const el = floatingTooltipElem || statusTooltipElem;
