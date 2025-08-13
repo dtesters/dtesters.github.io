@@ -93,22 +93,45 @@ fetch(lanyardApiUrl)
     .catch(error => console.error('Error fetching Lanyard data:', error));
 
 // --- Real-time updates using Lanyard WebSocket ---
+let lanyardWs = null;
+let lanyardHeartbeat = null;
+let lanyardReconnectAttempts = 0;
+
 function connectLanyardWebsocket(userId) {
     try {
-        const ws = new WebSocket('wss://api.lanyard.rest/socket');
+        lanyardWs = new WebSocket('wss://api.lanyard.rest/socket');
 
-        ws.addEventListener('open', () => {
-            // subscribe to the user's updates
-            ws.send(JSON.stringify({ op: 2, d: { subscribe_to_id: userId } }));
+        lanyardWs.addEventListener('open', () => {
+            // wait for HELLO message from server to get heartbeat interval
+            console.info('Lanyard WS opened');
         });
 
-        ws.addEventListener('message', (event) => {
+        lanyardWs.addEventListener('message', (event) => {
             try {
                 const payload = JSON.parse(event.data);
-                if (payload.t === 'INIT_STATE' || payload.t === 'PRESENCE_UPDATE') {
-                    const d = payload.d;
-                    if (d && d.discord_status) {
-                        const status = d.discord_status;
+
+                // Hello (server tells us heartbeat interval)
+                if (payload.op === 1 && payload.d && payload.d.heartbeat_interval) {
+                    const heartbeatIntervalMs = payload.d.heartbeat_interval;
+                    // clear any previous heartbeat
+                    if (lanyardHeartbeat) clearInterval(lanyardHeartbeat);
+                    // send heartbeat regularly
+                    lanyardHeartbeat = setInterval(() => {
+                        try { lanyardWs.send(JSON.stringify({ op: 3 })); } catch (e) {}
+                    }, heartbeatIntervalMs);
+
+                    // After HELLO, initialize subscription
+                    lanyardWs.send(JSON.stringify({ op: 2, d: { subscribe_to_ids: [userId] } }));
+                    return;
+                }
+
+                // Event payloads
+                if (payload.op === 0 && (payload.t === 'INIT_STATE' || payload.t === 'PRESENCE_UPDATE')) {
+                    // payload.d may be a mapping or a single presence object
+                    const data = payload.d || {};
+                    let presence = data[userId] || data;
+                    if (presence && presence.discord_status) {
+                        const status = presence.discord_status;
                         discordStatus.textContent = status.charAt(0).toUpperCase() + status.slice(1);
                         statusIndicator.style.backgroundColor = statusColors[status] || '#ccc';
                     }
@@ -118,14 +141,18 @@ function connectLanyardWebsocket(userId) {
             }
         });
 
-        ws.addEventListener('close', (ev) => {
-            // try to reconnect after short delay
-            setTimeout(() => connectLanyardWebsocket(userId), 2500);
+        lanyardWs.addEventListener('close', (ev) => {
+            console.warn('Lanyard WS closed', ev);
+            if (lanyardHeartbeat) { clearInterval(lanyardHeartbeat); lanyardHeartbeat = null; }
+            // reconnect with backoff
+            lanyardReconnectAttempts++;
+            const backoff = Math.min(30000, 1000 * Math.pow(2, Math.min(6, lanyardReconnectAttempts)));
+            setTimeout(() => connectLanyardWebsocket(userId), backoff);
         });
 
-        ws.addEventListener('error', (err) => {
+        lanyardWs.addEventListener('error', (err) => {
             console.error('Lanyard WS error', err);
-            ws.close();
+            try { lanyardWs.close(); } catch (e) {}
         });
     } catch (e) {
         console.error('Failed to connect Lanyard websocket', e);
@@ -133,7 +160,7 @@ function connectLanyardWebsocket(userId) {
 }
 
 // initialize websocket subscription (use the same id as lanyardApiUrl)
-// extract the id from the API url
+// extract the id from the API url and start connection
 try {
     const match = lanyardApiUrl.match(/users\/(\d+)/);
     if (match) {
@@ -172,37 +199,38 @@ let page = $.querySelector('.container')
 const boxesContainer = $.querySelector('.boxes');
 const gap = 1; // gap between boxes
 
+// Recreate the original flex-based box layout: create enough .box elements
+// to fill the viewport and rely on CSS (.box rules + media queries) to size them.
 function createBoxes() {
     boxesContainer.innerHTML = ''; // Clear existing boxes if any
+
+    // Determine approximate box size to compute how many are needed.
+    // Keep this in sync with the CSS breakpoints: mobile uses 33px, small uses 70px, desktop 95px.
     const width = window.innerWidth;
     const height = window.innerHeight;
 
-    // Responsive box sizing: mobile gets smaller boxes
-    let calculatedBoxSize;
+    let approxBoxSize;
     if (width <= 480) {
-        calculatedBoxSize = 33;
+        approxBoxSize = 33;
     } else if (width <= 768) {
-        calculatedBoxSize = 70;
+        approxBoxSize = 70;
     } else {
-        calculatedBoxSize = 95;
+        approxBoxSize = 95;
     }
 
-    const cols = Math.ceil(width / (calculatedBoxSize + gap));
-    const rows = Math.ceil(height / (calculatedBoxSize + gap));
+    const cols = Math.ceil(width / (approxBoxSize + gap));
+    const rows = Math.ceil(height / (approxBoxSize + gap));
     const totalBoxes = cols * rows;
 
-    // Use CSS Grid for precise placement
-    boxesContainer.style.display = 'grid';
-    boxesContainer.style.gridTemplateColumns = `repeat(${cols}, ${calculatedBoxSize}px)`;
-    boxesContainer.style.gridAutoRows = `${calculatedBoxSize}px`;
-    boxesContainer.style.gap = `${gap}px`;
+    // Ensure container uses flex (as in original CSS) and doesn't have inline grid styles
+    boxesContainer.style.display = '';
+    boxesContainer.style.gridTemplateColumns = '';
+    boxesContainer.style.gridAutoRows = '';
+    boxesContainer.style.gap = '';
 
     for (let i = 0; i < totalBoxes; i++) {
         const box = $.createElement('div');
         box.classList.add('box');
-        // enforce size inline so grid is consistent even if CSS differs
-        box.style.width = `${calculatedBoxSize}px`;
-        box.style.height = `${calculatedBoxSize}px`;
         boxesContainer.appendChild(box);
     }
 }
