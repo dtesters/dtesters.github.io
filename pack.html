@@ -233,6 +233,84 @@
         Active_Developer: { icon: 'https://cdn.discordapp.com/badge-icons/6bdc42827a38498929a4920da12695d9.png', label: 'Active Developer' }
       };
 
+      function ProfileView({ data }) {
+        if (data.failed) {
+          return (
+            <div className="profile-body">
+              {data.fallbackName && <div className="profile-name">{data.fallbackName}</div>}
+              {data.discord_user && data.discord_user.id && <div style={{marginTop: 6, color:'var(--muted)'}}>User ID: {data.discord_user.id}</div>}
+              <p style={{color: 'var(--muted)', marginTop: '12px'}}>Could not fetch user profile.</p>
+            </div>
+          )
+        }
+
+        const { discord_user, discord_status, activities, spotify, badges } = data;
+        const bannerUrl = discord_user.banner;
+        const avatarUrl = discord_user.avatar || 'https://cdn.discordapp.com/embed/avatars/0.png';
+
+        const userBadges = Object.keys(badgeInfo).filter(key => badges.includes(key.toUpperCase()));
+
+        return (
+          <div>
+            <div className="profile-header" style={{ backgroundColor: discord_user.banner_color, backgroundImage: bannerUrl ? `url(${bannerUrl})` : undefined }}></div>
+            <div className="profile-avatar-wrapper">
+              <img className="profile-avatar" src={avatarUrl} alt="avatar" />
+            </div>
+            <div className="profile-body">
+              <div className="profile-name">
+                {discord_user.display_name}
+              </div>
+              <div style={{ color: 'var(--muted)', marginTop: '2px', marginBottom: '12px' }}>
+                {discord_user.username}
+                {discord_user.discriminator !== "0" && <span className="profile-discriminator">#{discord_user.discriminator}</span>}
+              </div>
+
+              <div style={{ borderTop: '1px solid rgba(255,255,255,0.04)', margin: '12px 0' }}></div>
+              
+              <div style={{ fontSize: '13px', color: 'var(--muted)', marginBottom: '12px' }}>
+                User ID: {discord_user.id}
+              </div>
+              
+              <div className="profile-badges">
+                {userBadges.map(badge => (
+                  <img key={badge} src={badgeInfo[badge].icon} title={badgeInfo[badge].label} className="profile-badge" />
+                ))}
+              </div>
+
+              <div className="profile-status">
+                <div className={`status-dot ${discord_status}`}></div>
+                <span>{(discord_status || 'offline').charAt(0).toUpperCase() + (discord_status || 'offline').slice(1)}</span>
+              </div>
+              
+              <div className="profile-activities">
+                {(activities || []).filter(a => a.type !== 4).map(activity => (
+                  <div key={activity.id || activity.name} className="activity">
+                    {activity.assets && activity.assets.large_image && 
+                      <img src={`https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`} alt="" />
+                    }
+                    <div className="activity-details">
+                      <strong>{activity.name}</strong>
+                      <span>{activity.details}</span>
+                      <span>{activity.state}</span>
+                    </div>
+                  </div>
+                ))}
+                {spotify && (
+                    <div className="activity">
+                    <img src={spotify.album_art_url} alt="album art" />
+                    <div className="activity-details">
+                      <strong>{spotify.song}</strong>
+                      <span>by {spotify.artist}</span>
+                      <span>on {spotify.album}</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )
+      }
+
       function App(){
         const [messages, setMessages] = useState([]);
         const [filter, setFilter] = useState('');
@@ -243,6 +321,7 @@
         const [profileUser, setProfileUser] = useState(null);
         const [profileData, setProfileData] = useState(null);
         const [loadingProfile, setLoadingProfile] = useState(false);
+        const [userProfiles, setUserProfiles] = useState({}); // To cache user profiles
         const fileInputRef = useRef();
         const nameIdRef = useRef({});
 
@@ -279,6 +358,49 @@
             }
           });
           nameIdRef.current = map;
+        }, [messages]);
+        
+        // Effect to fetch user profiles for avatars when messages load
+        useEffect(() => {
+          if (messages.length === 0) {
+            setUserProfiles({}); // Clear profiles when messages are cleared
+            return;
+          }
+
+          const fetchUserProfiles = async () => {
+            const userIds = new Set();
+            messages.forEach(m => {
+              const authorId = coalesce(
+                resolveIdFromObject(m.author), resolveIdFromObject(m.user),
+                m.user_id, m.userId, m.author_id, m.authorId
+              );
+              if (authorId) userIds.add(authorId);
+            });
+
+            const idsToFetch = Array.from(userIds).filter(id => !userProfiles[id]);
+            if (idsToFetch.length === 0) return;
+
+            const results = await Promise.all(idsToFetch.map(async (id) => {
+              try {
+                const res = await fetch(`https://discordlookup.mesalytic.moe/v1/user/${id}`);
+                if (!res.ok) return { id, data: { failed: true } };
+                const data = await res.json();
+                return { id, data };
+              } catch (e) {
+                return { id, data: { failed: true } };
+              }
+            }));
+
+            setUserProfiles(prevProfiles => {
+              const updatedProfiles = { ...prevProfiles };
+              results.forEach(result => {
+                if (result) updatedProfiles[result.id] = result.data;
+              });
+              return updatedProfiles;
+            });
+          };
+
+          fetchUserProfiles();
         }, [messages]);
 
         function openFile(){ setShowImportModal(true); }
@@ -334,7 +456,6 @@
         
         async function showProfile(user) {
           if (!user) return;
-          // Accept either a userId (string/number) or an object like { id?, username? }
           if (typeof user === 'object') {
             const fallbackName = user.username || user.name || 'Unknown';
             const fallbackId = user.id || null;
@@ -345,8 +466,17 @@
 
           const userId = String(user);
           setProfileUser(userId);
-          if (profileData && profileData.discord_user && profileData.discord_user.id === userId && !profileData.failed) {
-            return; // Already loaded this profile
+          
+          // Check cache first
+          if (userProfiles[userId] && !userProfiles[userId].failed) {
+            const data = userProfiles[userId];
+            const mapped = {
+              // <<< FIX: Replaced all optional chaining (?.) with logical AND (&&) for compatibility >>>
+              discord_user: { id: data.id, username: data.username, discriminator: (data.raw && data.raw.discriminator) || '0', avatar: data.avatar && data.avatar.link, banner: data.banner && data.banner.link, display_name: data.global_name || data.username, banner_color: (data.banner && data.banner.color) || (data.accent_color ? `#${data.accent_color.toString(16).padStart(6, '0')}` : null) },
+              discord_status: 'offline', activities: [], spotify: null, badges: data.badges || []
+            };
+            setProfileData(mapped);
+            return;
           }
 
           setLoadingProfile(true);
@@ -358,27 +488,13 @@
               throw new Error((errorData && errorData.message) || `User not found (${res.status})`);
             }
             const data = await res.json();
-
-            // Map the new API response to the structure expected by ProfileView
+            setUserProfiles(prev => ({...prev, [userId]: data})); // Update cache
             const mapped = {
-              discord_user: {
-                id: data.id,
-                username: data.username,
-                discriminator: data.raw && data.raw.discriminator ? data.raw.discriminator : '0',
-                avatar: data.avatar ? data.avatar.link : null,
-                banner: data.banner ? data.banner.link : null,
-                display_name: data.global_name || data.username,
-                banner_color: data.banner ? data.banner.color : (data.accent_color ? `#${data.accent_color.toString(16).padStart(6, '0')}` : null)
-              },
-              // This new API does not provide presence data (status, activities)
-              discord_status: 'offline',
-              activities: [],
-              spotify: null,
-              // Pass the new badges array directly
-              badges: data.badges || []
+              // <<< FIX: Replaced all optional chaining (?.) with logical AND (&&) for compatibility >>>
+              discord_user: { id: data.id, username: data.username, discriminator: (data.raw && data.raw.discriminator) || '0', avatar: data.avatar && data.avatar.link, banner: data.banner && data.banner.link, display_name: data.global_name || data.username, banner_color: (data.banner && data.banner.color) || (data.accent_color ? `#${data.accent_color.toString(16).padStart(6, '0')}` : null) },
+              discord_status: 'offline', activities: [], spotify: null, badges: data.badges || []
             };
             setProfileData(mapped);
-
           } catch (err) {
             console.error(err);
             setAlert({ title: 'Profile Error', message: `Could not fetch profile for user ${userId}. Reason: ${err.message}` });
@@ -388,37 +504,42 @@
           }
         }
 
-
         function renderMessage(m, i){
           const hasAttachments = m.attachments && m.attachments.length;
           if(filter && !(m.content || '').toLowerCase().includes(filter.toLowerCase()) && !(m.author && m.author.name && m.author.name.toLowerCase().includes(filter.toLowerCase()))) return null;
           
           const authorId = coalesce(
-            resolveIdFromObject(m.author),
-            resolveIdFromObject(m.user),
+            resolveIdFromObject(m.author), resolveIdFromObject(m.user),
             m.user_id, m.userId, m.author_id, m.authorId
           );
+          // <<< FIX: Replaced all optional chaining (?.) with logical AND (&&) for compatibility >>>
           const authorName = coalesce(
-            m.author && (m.author.display_name || m.author.name || m.author.username),
-            m.user && (m.user.display_name || m.user.name || m.user.username),
+            m.author && m.author.display_name, m.author && m.author.name, m.author && m.author.username,
+            m.user && m.user.display_name, m.user && m.user.name, m.user && m.user.username,
             m.display_name, m.username, m.name, 'Unknown'
           );
           const authorDiscriminator = (m.author && m.author.discriminator) || (m.user && m.user.discriminator);
- 
+
           const replyAuthorId = m.reply ? coalesce(
-            resolveIdFromObject(m.reply.author),
-            resolveIdFromObject(m.reply.user),
-            m.reply && (m.reply.user_id || m.reply.userId || m.reply.id || m.reply.author_id || m.reply.authorId)
+            resolveIdFromObject(m.reply.author), resolveIdFromObject(m.reply.user),
+            m.reply.user_id, m.reply.userId, m.reply.id, m.reply.author_id, m.reply.authorId
           ) : null;
           const replyAuthorName = m.reply ? coalesce(
-            m.reply.author && (m.reply.author.display_name || m.reply.author.name || m.reply.author.username),
-            m.reply.user && (m.reply.user.display_name || m.reply.user.name || m.reply.user.username),
+            m.reply.author && m.reply.author.display_name, m.reply.author && m.reply.author.name, m.reply.author && m.reply.author.username,
+            m.reply.user && m.reply.user.display_name, m.reply.user && m.reply.user.name, m.reply.user && m.reply.user.username,
             m.reply.display_name, m.reply.username, m.reply.name
           ) : null;
- 
+          
+          const profile = userProfiles[authorId];
+          const avatarUrl = (profile && profile.avatar && profile.avatar.link)
+            ? profile.avatar.link
+            : ((m.author && m.author.avatar)
+                ? m.author.avatar
+                : 'https://cdn.discordapp.com/embed/avatars/0.png');
+
           return (
             <div className="message" key={m.id || i}>
-              <img className="avatar" src={(m.author && m.author.avatar) ? m.author.avatar : 'https://cdn.discordapp.com/embed/avatars/0.png'} alt="avatar" />
+              <img className="avatar" src={avatarUrl} alt="avatar" />
               <div style={{flex:1}}>
                 <div className="meta">
                   <div>
@@ -428,9 +549,9 @@
                     }}>
                         {authorName}
                         {authorDiscriminator && authorDiscriminator != "0" && <span className="discriminator">#{authorDiscriminator}</span>}
-                     </div>
-                     <div className="timestamp">{formatDate(m.timestamp)}</div>
-                   </div>
+                      </div>
+                      <div className="timestamp">{formatDate(m.timestamp)}</div>
+                    </div>
                 </div>
                 {m.reply && (
                   <div className="reply">
@@ -627,87 +748,6 @@
                 </div>
               </div>
             )}
-          </div>
-        )
-      }
-
-      function ProfileView({ data }) {
-        if (data.failed) {
-          return (
-            <div className="profile-body">
-              {data.fallbackName && <div className="profile-name">{data.fallbackName}</div>}
-              {data.discord_user && data.discord_user.id && <div style={{marginTop: 6, color:'var(--muted)'}}>User ID: {data.discord_user.id}</div>}
-              <p style={{color: 'var(--muted)', marginTop: '12px'}}>Could not fetch user profile.</p>
-            </div>
-          )
-        }
-
-        const { discord_user, discord_status, activities, spotify, badges } = data;
-        const bannerUrl = discord_user.banner;
-        const avatarUrl = discord_user.avatar || 'https://cdn.discordapp.com/embed/avatars/0.png';
-
-        // The API returns badge names like "HOUSE_BRILLIANCE".
-        // The badgeInfo object has keys like "House_Brilliance".
-        // We find matching keys by uppercasing the badgeInfo keys.
-        const userBadges = Object.keys(badgeInfo).filter(key => badges.includes(key.toUpperCase()));
-
-        return (
-          <div>
-            <div className="profile-header" style={{ backgroundColor: discord_user.banner_color, backgroundImage: bannerUrl ? `url(${bannerUrl})` : undefined }}></div>
-            <div className="profile-avatar-wrapper">
-              <img className="profile-avatar" src={avatarUrl} alt="avatar" />
-            </div>
-            <div className="profile-body">
-              <div className="profile-name">
-                {discord_user.display_name}
-              </div>
-              <div style={{ color: 'var(--muted)', marginTop: '2px', marginBottom: '12px' }}>
-                {discord_user.username}
-                {discord_user.discriminator !== "0" && <span className="profile-discriminator">#{discord_user.discriminator}</span>}
-              </div>
-
-              <div style={{ borderTop: '1px solid rgba(255,255,255,0.04)', margin: '12px 0' }}></div>
-              
-              <div style={{ fontSize: '13px', color: 'var(--muted)', marginBottom: '12px' }}>
-                User ID: {discord_user.id}
-              </div>
-              
-              <div className="profile-badges">
-                {userBadges.map(badge => (
-                  <img key={badge} src={badgeInfo[badge].icon} title={badgeInfo[badge].label} className="profile-badge" />
-                ))}
-              </div>
-
-              <div className="profile-status">
-                <div className={`status-dot ${discord_status}`}></div>
-                <span>{(discord_status || 'offline').charAt(0).toUpperCase() + (discord_status || 'offline').slice(1)}</span>
-              </div>
-              
-              <div className="profile-activities">
-                {(activities || []).filter(a => a.type !== 4).map(activity => (
-                  <div key={activity.id || activity.name} className="activity">
-                    {activity.assets && activity.assets.large_image && 
-                      <img src={`https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`} alt="" />
-                    }
-                    <div className="activity-details">
-                      <strong>{activity.name}</strong>
-                      <span>{activity.details}</span>
-                      <span>{activity.state}</span>
-                    </div>
-                  </div>
-                ))}
-                {spotify && (
-                   <div className="activity">
-                    <img src={spotify.album_art_url} alt="album art" />
-                    <div className="activity-details">
-                      <strong>{spotify.song}</strong>
-                      <span>by {spotify.artist}</span>
-                      <span>on {spotify.album}</span>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
           </div>
         )
       }
