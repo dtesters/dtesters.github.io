@@ -73,6 +73,12 @@
       .reply{ background:rgba(255,255,255,0.02); padding:8px 12px; border-radius:8px; margin-bottom:8px; border-left: 2px solid var(--accent); font-size: 14px; }
       .reply-author{ font-weight: 600; }
 
+      /* Custom scrollbar */
+      #messages::-webkit-scrollbar { width: 8px; }
+      #messages::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); border-radius: 4px; }
+      #messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 4px; }
+      #messages::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.12); }
+
       @media (max-width:820px){ .container{ grid-template-columns: 1fr; } .sidebar{ order:2 } }
 
       /* Fancy page mode (easter egg) */
@@ -130,7 +136,6 @@
   <body>
     <div id="root" class="app"></div>
 
-    <!-- React + Babel (lightweight dev build) -->
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
@@ -164,25 +169,68 @@
         }
       }
 
-      const badgeFlags = {
-        Discord_Employee: 1 << 0, HypeSquad_Events: 1 << 2, Bug_Hunter_Level_1: 1 << 3,
-        House_Bravery: 1 << 6, House_Brilliance: 1 << 7, House_Balance: 1 << 8,
-        Early_Supporter: 1 << 9, Bug_Hunter_Level_2: 1 << 14, Verified_Bot: 1 << 16,
-        Verified_Developer: 1 << 17, Certified_Moderator: 1 << 18, Active_Developer: 1 << 22
-      };
+      // Helpers to resolve user IDs and normalize names across varying JSON shapes
+      function normalizeName(n){ return (n || '').trim().toLowerCase(); }
+      function extractIdFromUrl(u){
+        if(!u) return null;
+        try{
+          const s = String(u);
+          const m = s.match(/\/(?:avatars|users|profiles)\/(\d{16,25})/);
+          return m ? m[1] : null;
+        }catch(e){ return null }
+      }
+      function coalesce(){
+        for (let i=0;i<arguments.length;i++){
+          const v = arguments[i];
+          if (v !== undefined && v !== null && String(v).length > 0) return v;
+        }
+        return null;
+      }
+      function resolveIdFromObject(obj){
+        if(!obj || typeof obj !== 'object') return null;
+        return coalesce(
+          obj.id, obj.user_id, obj.userId, obj.author_id, obj.authorId,
+          extractIdFromUrl(obj.avatar), extractIdFromUrl(obj.icon), extractIdFromUrl(obj.icon_url), extractIdFromUrl(obj.avatar_url)
+        );
+      }
+      function generateNameKeys(name){
+        const base = normalizeName(name);
+        const keys = new Set([base]);
+        // drop trailing colon
+        keys.add(base.replace(/:$/, ''));
+        // remove whitespace variant
+        keys.add(base.replace(/\s+/g, ''));
+        // remove non-alphanumerics variant
+        keys.add(base.replace(/[^a-z0-9]/g, ''));
+        // discriminator style name#1234 -> name
+        if (base.includes('#')) keys.add(base.split('#')[0]);
+        // dotted style name.suffix -> name
+        if (base.includes('.')) keys.add(base.split('.')[0]);
+        return Array.from(keys);
+      }
+      function resolveIdByName(map, name){
+        if (!name) return null;
+        const keys = generateNameKeys(name);
+        for (let i=0;i<keys.length;i++){
+          const k = keys[i];
+          if (map[k]) return map[k];
+        }
+        return null;
+      }
 
       const badgeInfo = {
-        Discord_Employee: { icon: 'https://raw.githubusercontent.com/discordjs/site/main/public/images/badges/staff.svg', label: 'Discord Employee' },
-        HypeSquad_Events: { icon: 'https://raw.githubusercontent.com/discordjs/site/main/public/images/badges/hypesquad.svg', label: 'HypeSquad Events' },
-        Bug_Hunter_Level_1: { icon: 'https://raw.githubusercontent.com/discordjs/site/main/public/images/badges/bug-hunter.svg', label: 'Bug Hunter' },
-        House_Bravery: { icon: 'https://raw.githubusercontent.com/discordjs/site/main/public/images/badges/bravery.svg', label: 'HypeSquad Bravery' },
-        House_Brilliance: { icon: 'https://raw.githubusercontent.com/discordjs/site/main/public/images/badges/brilliance.svg', label: 'HypeSquad Brilliance' },
-        House_Balance: { icon: 'https://raw.githubusercontent.com/discordjs/site/main/public/images/badges/balance.svg', label: 'HypeSquad Balance' },
-        Early_Supporter: { icon: 'https://raw.githubusercontent.com/discordjs/site/main/public/images/badges/early-supporter.svg', label: 'Early Supporter' },
-        Bug_Hunter_Level_2: { icon: 'https://raw.githubusercontent.com/discordjs/site/main/public/images/badges/bug-hunter-level-2.svg', label: 'Bug Hunter Level 2' },
-        Verified_Developer: { icon: 'https://raw.githubusercontent.com/discordjs/site/main/public/images/badges/verified-developer.svg', label: 'Verified Bot Developer' },
-        Certified_Moderator: { icon: 'https://raw.githubusercontent.com/discordjs/site/main/public/images/badges/moderator.svg', label: 'Certified Moderator' },
-        Active_Developer: { icon: 'https://raw.githubusercontent.com/discordjs/site/main/public/images/badges/active-developer.svg', label: 'Active Developer' }
+        Discord_Employee: { icon: 'https://cdn.discordapp.com/badge-icons/5e74e9b61934fc1f67c65515d1f7e60d.png', label: 'Discord Employee' },
+        HypeSquad_Events: { icon: 'https://cdn.discordapp.com/badge-icons/bf01d1073931f921909045f3a39fd264.png', label: 'HypeSquad Events' },
+        Bug_Hunter_Level_1: { icon: 'https://cdn.discordapp.com/badge-icons/2717692c7dca7289b35297368a940dd0.png', label: 'Bug Hunter' },
+        House_Bravery: { icon: 'https://cdn.discordapp.com/badge-icons/8a88d63823d8a71cd5e390baa45efa02.png', label: 'HypeSquad Bravery' },
+        House_Brilliance: { icon: 'https://cdn.discordapp.com/badge-icons/011940fd013da3f7fb926e4a1cd2e618.png', label: 'HypeSquad Brilliance' },
+        House_Balance: { icon: 'https://cdn.discordapp.com/badge-icons/3aa41de486fa12454c3761e8e223442e.png', label: 'HypeSquad Balance' },
+        Early_Supporter: { icon: 'https://cdn.discordapp.com/badge-icons/7060786766c9c840eb3019e725d2b358.png', label: 'Early Supporter' },
+        Bug_Hunter_Level_2: { icon: 'https://cdn.discordapp.com/badge-icons/848f79194d4be5ff5f81505cbd0ce1e6.png', label: 'Bug Hunter Level 2' },
+        Verified_Bot: { icon: 'https://raw.githubusercontent.com/discordjs/site/main/public/images/badges/verified-bot.svg', label: 'Verified Bot' },
+        Verified_Developer: { icon: 'https://cdn.discordapp.com/badge-icons/6df5892e0f35b051f8b61eace34f4967.png', label: 'Verified Bot Developer' },
+        Certified_Moderator: { icon: 'https://cdn.discordapp.com/badge-icons/fee1624003e2fee35cb398e125dc479b.png', label: 'Certified Moderator' },
+        Active_Developer: { icon: 'https://cdn.discordapp.com/badge-icons/6bdc42827a38498929a4920da12695d9.png', label: 'Active Developer' }
       };
 
       function App(){
@@ -196,6 +244,42 @@
         const [profileData, setProfileData] = useState(null);
         const [loadingProfile, setLoadingProfile] = useState(false);
         const fileInputRef = useRef();
+        const nameIdRef = useRef({});
+
+        useEffect(()=>{
+          const map = {};
+          messages.forEach(function(mm){
+            const id = coalesce(
+              resolveIdFromObject(mm.author),
+              resolveIdFromObject(mm.user),
+              mm.user_id, mm.userId, mm.author_id, mm.authorId
+            );
+            const name = coalesce(
+              mm.author && (mm.author.display_name || mm.author.name || mm.author.username),
+              mm.user && (mm.user.display_name || mm.user.name || mm.user.username),
+              mm.display_name, mm.username, mm.name
+            );
+            if (id && name) {
+              generateNameKeys(name).forEach(function(k){ if (!map[k]) map[k] = String(id); });
+            }
+            if (mm.reply) {
+              const rid = coalesce(
+                resolveIdFromObject(mm.reply.author),
+                resolveIdFromObject(mm.reply.user),
+                mm.reply.user_id, mm.reply.userId, mm.reply.id, mm.reply.author_id, mm.reply.authorId
+              );
+              const rname = coalesce(
+                mm.reply.author && (mm.reply.author.display_name || mm.reply.author.name || mm.reply.author.username),
+                mm.reply.user && (mm.reply.user.display_name || mm.reply.user.name || mm.reply.user.username),
+                mm.reply.display_name, mm.reply.username, mm.reply.name
+              );
+              if (rid && rname) {
+                generateNameKeys(rname).forEach(function(k){ if (!map[k]) map[k] = String(rid); });
+              }
+            }
+          });
+          nameIdRef.current = map;
+        }, [messages]);
 
         function openFile(){ setShowImportModal(true); }
 
@@ -247,22 +331,54 @@
             setAlert({ title: 'Fetch error', message: 'Failed to fetch or parse JSON from URL' });
           }
         }
+        
+        async function showProfile(user) {
+          if (!user) return;
+          // Accept either a userId (string/number) or an object like { id?, username? }
+          if (typeof user === 'object') {
+            const fallbackName = user.username || user.name || 'Unknown';
+            const fallbackId = user.id || null;
+            setProfileUser(fallbackName);
+            setProfileData({ failed: true, discord_user: { id: fallbackId }, fallbackName });
+            return;
+          }
 
-        async function showProfile(userId) {
-          if (!userId) return;
+          const userId = String(user);
           setProfileUser(userId);
-          if (profileData && profileData.discord_user.id === userId) return; // already loaded
+          if (profileData && profileData.discord_user && profileData.discord_user.id === userId && !profileData.failed) {
+            return; // Already loaded this profile
+          }
 
           setLoadingProfile(true);
           setProfileData(null);
           try {
-            const res = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
+            const res = await fetch(`https://discordlookup.mesalytic.moe/v1/user/${userId}`);
             if (!res.ok) {
-              const errorData = await res.json();
-              throw new Error(errorData.message || 'User not found');
+              const errorData = await res.json().catch(() => ({}));
+              throw new Error((errorData && errorData.message) || `User not found (${res.status})`);
             }
-            const { data } = await res.json();
-            setProfileData(data);
+            const data = await res.json();
+
+            // Map the new API response to the structure expected by ProfileView
+            const mapped = {
+              discord_user: {
+                id: data.id,
+                username: data.username,
+                discriminator: data.raw && data.raw.discriminator ? data.raw.discriminator : '0',
+                avatar: data.avatar ? data.avatar.link : null,
+                banner: data.banner ? data.banner.link : null,
+                display_name: data.global_name || data.username,
+                banner_color: data.banner ? data.banner.color : (data.accent_color ? `#${data.accent_color.toString(16).padStart(6, '0')}` : null)
+              },
+              // This new API does not provide presence data (status, activities)
+              discord_status: 'offline',
+              activities: [],
+              spotify: null,
+              // Pass the new badges array directly
+              badges: data.badges || []
+            };
+            setProfileData(mapped);
+
           } catch (err) {
             console.error(err);
             setAlert({ title: 'Profile Error', message: `Could not fetch profile for user ${userId}. Reason: ${err.message}` });
@@ -272,25 +388,56 @@
           }
         }
 
+
         function renderMessage(m, i){
           const hasAttachments = m.attachments && m.attachments.length;
           if(filter && !(m.content || '').toLowerCase().includes(filter.toLowerCase()) && !(m.author && m.author.name && m.author.name.toLowerCase().includes(filter.toLowerCase()))) return null;
+          
+          const authorId = coalesce(
+            resolveIdFromObject(m.author),
+            resolveIdFromObject(m.user),
+            m.user_id, m.userId, m.author_id, m.authorId
+          );
+          const authorName = coalesce(
+            m.author && (m.author.display_name || m.author.name || m.author.username),
+            m.user && (m.user.display_name || m.user.name || m.user.username),
+            m.display_name, m.username, m.name, 'Unknown'
+          );
+          const authorDiscriminator = (m.author && m.author.discriminator) || (m.user && m.user.discriminator);
+ 
+          const replyAuthorId = m.reply ? coalesce(
+            resolveIdFromObject(m.reply.author),
+            resolveIdFromObject(m.reply.user),
+            m.reply && (m.reply.user_id || m.reply.userId || m.reply.id || m.reply.author_id || m.reply.authorId)
+          ) : null;
+          const replyAuthorName = m.reply ? coalesce(
+            m.reply.author && (m.reply.author.display_name || m.reply.author.name || m.reply.author.username),
+            m.reply.user && (m.reply.user.display_name || m.reply.user.name || m.reply.user.username),
+            m.reply.display_name, m.reply.username, m.reply.name
+          ) : null;
+ 
           return (
             <div className="message" key={m.id || i}>
-              <img className="avatar" src={m.author && m.author.avatar ? m.author.avatar : 'https://cdn.discordapp.com/embed/avatars/0.png'} alt="avatar" />
+              <img className="avatar" src={(m.author && m.author.avatar) ? m.author.avatar : 'https://cdn.discordapp.com/embed/avatars/0.png'} alt="avatar" />
               <div style={{flex:1}}>
                 <div className="meta">
                   <div>
-                    <div className="author" style={{cursor: (m.author && m.author.id) || m.user_id ? 'pointer' : 'default'}} onClick={()=> showProfile((m.author && m.author.id) || m.user_id)}>
-                      {m.author ? `${m.author.name}` : (m.username || 'Unknown')}
-                      {m.author && m.author.discriminator != "0" && <span className="discriminator">#{m.author.discriminator}</span>}
-                    </div>
-                    <div className="timestamp">{formatDate(m.timestamp)}</div>
-                  </div>
+                    <div className="author" title="View profile" style={{cursor: 'pointer'}} onClick={()=> {
+                      const resolved = authorId || resolveIdByName(nameIdRef.current, authorName);
+                      showProfile(resolved || { username: authorName })
+                    }}>
+                        {authorName}
+                        {authorDiscriminator && authorDiscriminator != "0" && <span className="discriminator">#{authorDiscriminator}</span>}
+                     </div>
+                     <div className="timestamp">{formatDate(m.timestamp)}</div>
+                   </div>
                 </div>
                 {m.reply && (
                   <div className="reply">
-                    <span className="reply-author" style={{cursor: m.reply.id ? 'pointer' : 'default'}} onClick={() => m.reply.id && showProfile(m.reply.id)}>{m.reply.username}</span>: {m.reply.content}
+                    <span className="reply-author" title="View profile" style={{cursor: 'pointer'}} onClick={() => {
+                      const resolved = replyAuthorId || (replyAuthorName ? resolveIdByName(nameIdRef.current, replyAuthorName) : null);
+                      showProfile(resolved || { username: replyAuthorName })
+                    }}>{replyAuthorName}</span>: {m.reply.content}
                   </div>
                 )}
                 <div className="text">{m.content || ''}</div>
@@ -488,30 +635,43 @@
         if (data.failed) {
           return (
             <div className="profile-body">
-              <div className="profile-name">User ID: {data.discord_user.id}</div>
+              {data.fallbackName && <div className="profile-name">{data.fallbackName}</div>}
+              {data.discord_user && data.discord_user.id && <div style={{marginTop: 6, color:'var(--muted)'}}>User ID: {data.discord_user.id}</div>}
               <p style={{color: 'var(--muted)', marginTop: '12px'}}>Could not fetch user profile.</p>
             </div>
           )
         }
-        const { discord_user, discord_status, activities, spotify } = data;
-        const bannerUrl = discord_user.banner
-          ? `https://cdn.discordapp.com/banners/${discord_user.id}/${discord_user.banner}.${discord_user.banner.startsWith('a_') ? 'gif' : 'png'}?size=300`
-          : null;
-        const avatarUrl = `https://cdn.discordapp.com/avatars/${discord_user.id}/${discord_user.avatar}.png?size=128`;
 
-        const userBadges = Object.keys(badgeFlags).filter(flag => (discord_user.public_flags & badgeFlags[flag]) !== 0);
+        const { discord_user, discord_status, activities, spotify, badges } = data;
+        const bannerUrl = discord_user.banner;
+        const avatarUrl = discord_user.avatar || 'https://cdn.discordapp.com/embed/avatars/0.png';
+
+        // The API returns badge names like "HOUSE_BRILLIANCE".
+        // The badgeInfo object has keys like "House_Brilliance".
+        // We find matching keys by uppercasing the badgeInfo keys.
+        const userBadges = Object.keys(badgeInfo).filter(key => badges.includes(key.toUpperCase()));
 
         return (
           <div>
-            <div className="profile-header" style={{ backgroundColor: discord_user.banner_color, backgroundImage: `url(${bannerUrl})` }}></div>
+            <div className="profile-header" style={{ backgroundColor: discord_user.banner_color, backgroundImage: bannerUrl ? `url(${bannerUrl})` : undefined }}></div>
             <div className="profile-avatar-wrapper">
               <img className="profile-avatar" src={avatarUrl} alt="avatar" />
             </div>
             <div className="profile-body">
               <div className="profile-name">
-                {discord_user.display_name || discord_user.username}
+                {discord_user.display_name}
+              </div>
+              <div style={{ color: 'var(--muted)', marginTop: '2px', marginBottom: '12px' }}>
+                {discord_user.username}
                 {discord_user.discriminator !== "0" && <span className="profile-discriminator">#{discord_user.discriminator}</span>}
               </div>
+
+              <div style={{ borderTop: '1px solid rgba(255,255,255,0.04)', margin: '12px 0' }}></div>
+              
+              <div style={{ fontSize: '13px', color: 'var(--muted)', marginBottom: '12px' }}>
+                User ID: {discord_user.id}
+              </div>
+              
               <div className="profile-badges">
                 {userBadges.map(badge => (
                   <img key={badge} src={badgeInfo[badge].icon} title={badgeInfo[badge].label} className="profile-badge" />
@@ -520,13 +680,13 @@
 
               <div className="profile-status">
                 <div className={`status-dot ${discord_status}`}></div>
-                <span>{discord_status.charAt(0).toUpperCase() + discord_status.slice(1)}</span>
+                <span>{(discord_status || 'offline').charAt(0).toUpperCase() + (discord_status || 'offline').slice(1)}</span>
               </div>
-
+              
               <div className="profile-activities">
-                {activities.filter(a => a.type !== 4).map(activity => (
-                  <div key={activity.id} className="activity">
-                    {activity.assets && activity.assets.large_image &&
+                {(activities || []).filter(a => a.type !== 4).map(activity => (
+                  <div key={activity.id || activity.name} className="activity">
+                    {activity.assets && activity.assets.large_image && 
                       <img src={`https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`} alt="" />
                     }
                     <div className="activity-details">
